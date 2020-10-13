@@ -59,10 +59,10 @@ func getLayoutStart(title string) string {
 				<nav class="nav"> 
 					<div class="nav-content"> 
 						<h1 class="logo">
-							<a href="index.html">Think<span>space</span></a>
+							<a href="/">Think<span>space</span></a>
 						</h1> 
 						<ul class="navbar"> 
-							<li><a href="pages/about.html">About me</a></li> 
+							<li><a href="/pages">About me</a></li> 
 							<li><a href="#" target="_blank">RSS</a></li> 
 						</ul>
 					</div> 
