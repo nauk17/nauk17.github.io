@@ -154,9 +154,9 @@ func getCSS() string {
 		font-weight: normal;
 	}
 
-	h1, h2, h3 {
-		font-weight: 300;
-	}
+	/* h1, h2, h3 {
+	 	font-weight: 300;
+	 }*/
 
 	h1 {
 		font-size: 26.79296875px;
@@ -164,8 +164,9 @@ func getCSS() string {
 	}
 
 	h2 {
-		font-size: 22.5625px;
-		margin-top: 40px;
+		margin-bottom: 0;
+		line-height: 1.2em;
+		margin-top: 1em;
 	}
 
 	h3 {
@@ -217,6 +218,10 @@ func getCSS() string {
 	nav li .date {
 		display: inline-block;
 		width: 104px;
+		margin-top: 0;
+		font-size: 0.8em;
+		color: #777777;
+		font-style: italic;
 	}
 
 	.all-posts {
@@ -388,9 +393,7 @@ func writePostsSection(b *bytes.Buffer) {
 		dateFolder := strings.ReplaceAll(date, "-", "/")
 		path := "/posts/" + dateFolder + "/" + strings.ReplaceAll(title, " ", "-")
 
-		b.WriteString("<li><span class=\"date\">" + date +
-			"</span><a href=\"" + path + "\">" +
-			title + "</a></li>\n")
+		b.WriteString("<li><h2><a href=\"" + path + "\">" + title + "</a></h2><p class=\"date\">" + date + "</p></li>\n")
 	}
 
 	b.WriteString("</ul></nav><p class=\"all-posts\"><a href=\"all-posts.html\">All posts</a></p>")
@@ -499,39 +502,6 @@ func createFilesAndDirs() {
 	os.MkdirAll("_posts", 0755)
 	os.MkdirAll("_pages", 0755)
 	os.MkdirAll("_about", 0755)
-
-	// if _, err := os.Stat("_sections/header.md"); os.IsNotExist(err) {
-	// 	err := ioutil.WriteFile(
-	// 		"_sections/header.md",
-	// 		[]byte("# Title\n\nDescription"),
-	// 		0644)
-
-	// 	if err != nil {
-	// 		panic(err)
-	// 	}
-	// }
-
-	// if _, err := os.Stat("posts"); os.IsNotExist(err) {
-	// 	err := ioutil.WriteFile(
-	// 		"_posts/"+time.Now().Format("2006-01-02")+"-initial-post.md",
-	// 		[]byte("# Initial post\n\nThis is the initial post."),
-	// 		0644)
-
-	// 	if err != nil {
-	// 		panic(err)
-	// 	}
-	// }
-
-	// if _, err := os.Stat("pages"); os.IsNotExist(err) {
-	// 	err := ioutil.WriteFile(
-	// 		"_pages/about.md",
-	// 		[]byte("# About\n\nThis is the about page."),
-	// 		0644)
-
-	// 	if err != nil {
-	// 		panic(err)
-	// 	}
-	// }
 
 	os.MkdirAll("posts", 0755)
 	os.MkdirAll("pages", 0755)

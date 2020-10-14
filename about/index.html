@@ -1,70 +1,67 @@
 <!DOCTYPE html>
-<html>
+	<html>
+		<head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,400i,500" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400" rel="stylesheet">
+			<link href="assets/styte.css" rel="stylesheet">
+			<link href="/assets/styte.css" rel="stylesheet">
+			<title>About – Internal Place</title>
+			<script>
+				document.addEventListener('DOMContentLoaded', function(event) {
+					if (localStorage.getItem('theme') === 'dark') {
+						setDarkTheme();
+					} else {
+						setLightTheme();
+					}
+				});
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,400i,500" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400" rel="stylesheet">
-	<link href="assets/styte.css" rel="stylesheet">
-	<link href="/assets/styte.css" rel="stylesheet">
-	<title>About – Internal Place</title>
-	<script>
-		document.addEventListener('DOMContentLoaded', function (event) {
-			if (localStorage.getItem('theme') === 'dark') {
-				setDarkTheme();
-			} else {
-				setLightTheme();
-			}
-		});
+				function toggleTheme(event) {
+					event.preventDefault();
 
-		function toggleTheme(event) {
-			event.preventDefault();
+					if (document.body.className === 'dark') {
+						setLightTheme();
+					} else {
+						setDarkTheme();
+					}
+				}
 
-			if (document.body.className === 'dark') {
-				setLightTheme();
-			} else {
-				setDarkTheme();
-			}
-		}
+				function setLightTheme() {
+						document.body.className = 'light';
+						document.getElementsByClassName('toggle-theme')[0].children[0].innerHTML = 'Dark';
+						localStorage.setItem('theme', 'light');
+				}
 
-		function setLightTheme() {
-			document.body.className = 'light';
-			document.getElementsByClassName('toggle-theme')[0].children[0].innerHTML = 'Dark';
-			localStorage.setItem('theme', 'light');
-		}
-
-		function setDarkTheme() {
-			document.body.className = 'dark';
-			document.getElementsByClassName('toggle-theme')[0].children[0].innerHTML = 'Light';
-			localStorage.setItem('theme', 'dark');
-		}
-	</script>
-</head>
-
-<body>
-	<div class="header">
-		<nav class="nav">
-			<div class="nav-content">
-				<h1 class="logo">
-					<a href="/">Nauk<span>17</span></a>
-				</h1>
-				<ul class="navbar">
-					<li><a href="/about">About me</a></li>
-					<li><a href="#" target="_blank">RSS</a></li>
-				</ul>
+				function setDarkTheme() {
+						document.body.className = 'dark';
+						document.getElementsByClassName('toggle-theme')[0].children[0].innerHTML = 'Light';
+						localStorage.setItem('theme', 'dark');
+				}
+			</script>
+		</head>
+		<body>
+			<div class="header"> 
+				<nav class="nav"> 
+					<div class="nav-content"> 
+						<h1 class="logo">
+							<a href="/">Nauk<span>17</span></a>
+						</h1> 
+						<ul class="navbar"> 
+							<li><a href="/about">About me</a></li> 
+							<li><a href="#" target="_blank">RSS</a></li> 
+						</ul>
+					</div> 
+				</nav> 
 			</div>
-		</nav>
-	</div>
-	<div class="container">
-		<h1>About</h1>
+			<div class="container">
+			<h1>About</h1>
 
-		<p>This is the about page.</p>
+<p>This is the about page.</p>
 
-		<p class="toggle-theme">
-			<a href="#" onclick="toggleTheme(event)">Dark</a>
-		</p>
-	</div>
-</body>
-
-</html>
+					<p class="toggle-theme">
+						<a href="#" onclick="toggleTheme(event)">Dark</a>
+					</p>
+			</div>
+		</body>
+	</html>
