@@ -386,7 +386,6 @@ func writePostsSection(b *bytes.Buffer) {
 
 	posts := getDir("_posts")
 	limit := int(math.Max(float64(len(posts))-5, 0))
-
 	for i := len(posts) - 1; i >= limit; i-- {
 		_, date, title := getPostMeta(posts[i])
 
