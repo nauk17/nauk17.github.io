@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>Nauk17</title>
+<description>For the Future</description>
+<link>https://nauk17.github.io/</link>
+<item>
+<title>Hello World</title>
+<link>https://nauk17.github.io/posts/2020/10/14/Hello-World</link>
+</item>
+</channel>
+</rss>
