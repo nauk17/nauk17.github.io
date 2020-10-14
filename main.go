@@ -177,13 +177,13 @@ func getCSS() string {
 	body.light h1,
 	body.light h2,
 	body.light h3 {
-		color: #003880;
+		color: rgba(51,51,51,0.8);
 	}
 
 	body.dark h1,
 	body.dark h2,
-	body.light h3 {
-		color: rgba(51,51,51,0.8);
+	body.dark h3 {
+		color: #c8ddff;
 	}
 
 	@media (max-width: 1023.98px) {
