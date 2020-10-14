@@ -6,7 +6,6 @@ import (
 	"math"
 	"os"
 	"strings"
-	"time"
 
 	"github.com/russross/blackfriday"
 )
@@ -20,7 +19,7 @@ func getLayoutStart(title string) string {
 			<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,400i,500" rel="stylesheet">
 			<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400" rel="stylesheet">
 			<link href="assets/styte.css" rel="stylesheet">
-			<link href="../assets/styte.css" rel="stylesheet">
+			<link href="/assets/styte.css" rel="stylesheet">
 			<title>` + title + `</title>
 			<script>
 				document.addEventListener('DOMContentLoaded', function(event) {
@@ -485,38 +484,38 @@ func createFilesAndDirs() {
 	os.MkdirAll("_posts", 0755)
 	os.MkdirAll("_pages", 0755)
 
-	if _, err := os.Stat("_sections/header.md"); os.IsNotExist(err) {
-		err := ioutil.WriteFile(
-			"_sections/header.md",
-			[]byte("# Title\n\nDescription"),
-			0644)
+	// if _, err := os.Stat("_sections/header.md"); os.IsNotExist(err) {
+	// 	err := ioutil.WriteFile(
+	// 		"_sections/header.md",
+	// 		[]byte("# Title\n\nDescription"),
+	// 		0644)
 
-		if err != nil {
-			panic(err)
-		}
-	}
+	// 	if err != nil {
+	// 		panic(err)
+	// 	}
+	// }
 
-	if _, err := os.Stat("posts"); os.IsNotExist(err) {
-		err := ioutil.WriteFile(
-			"_posts/"+time.Now().Format("2006-01-02")+"-initial-post.md",
-			[]byte("# Initial post\n\nThis is the initial post."),
-			0644)
+	// if _, err := os.Stat("posts"); os.IsNotExist(err) {
+	// 	err := ioutil.WriteFile(
+	// 		"_posts/"+time.Now().Format("2006-01-02")+"-initial-post.md",
+	// 		[]byte("# Initial post\n\nThis is the initial post."),
+	// 		0644)
 
-		if err != nil {
-			panic(err)
-		}
-	}
+	// 	if err != nil {
+	// 		panic(err)
+	// 	}
+	// }
 
-	if _, err := os.Stat("pages"); os.IsNotExist(err) {
-		err := ioutil.WriteFile(
-			"_pages/about.md",
-			[]byte("# About\n\nThis is the about page."),
-			0644)
+	// if _, err := os.Stat("pages"); os.IsNotExist(err) {
+	// 	err := ioutil.WriteFile(
+	// 		"_pages/about.md",
+	// 		[]byte("# About\n\nThis is the about page."),
+	// 		0644)
 
-		if err != nil {
-			panic(err)
-		}
-	}
+	// 	if err != nil {
+	// 		panic(err)
+	// 	}
+	// }
 
 	os.MkdirAll("posts", 0755)
 	os.MkdirAll("pages", 0755)
