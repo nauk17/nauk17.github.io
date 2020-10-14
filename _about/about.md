@@ -5,5 +5,6 @@
 I have a thirst for knowledge. I strongly believe that knowledge will make us become better humans.
 
 My qoute:
+
 > Life is not fair to anyone, it's only fair to talented people and smiles.
 
