@@ -18,6 +18,7 @@ func getLayoutStart(title string) string {
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,400i,500" rel="stylesheet">
 			<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400" rel="stylesheet">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 			<link href="assets/styte.css" rel="stylesheet">
 			<link href="/assets/styte.css" rel="stylesheet">
 			<title>` + title + `</title>
@@ -41,14 +42,14 @@ func getLayoutStart(title string) string {
 				}
 
 				function setLightTheme() {
-						document.body.className = 'light';
-						document.getElementsByClassName('toggle-theme')[0].children[0].innerHTML = 'Dark';
-						localStorage.setItem('theme', 'light');
+					document.body.className = 'light';
+					document.getElementsByClassName('toggle-theme')[0].children[0].innerHTML = '<i class="fa fa-moon-o"></i>';
+					localStorage.setItem('theme', 'light');
 				}
 
 				function setDarkTheme() {
 						document.body.className = 'dark';
-						document.getElementsByClassName('toggle-theme')[0].children[0].innerHTML = 'Light';
+						document.getElementsByClassName('toggle-theme')[0].children[0].innerHTML = '<i class="fa fa-sun-o"></i>';
 						localStorage.setItem('theme', 'dark');
 				}
 			</script>
@@ -73,10 +74,13 @@ func getLayoutStart(title string) string {
 
 func getLayoutEnd() string {
 	return `
-					<p class="toggle-theme">
-						<a href="#" onclick="toggleTheme(event)">Dark</a>
-					</p>
 			</div>
+			<footer>
+				<small>© 2020 Quan Nguyen</small>
+				<small class="toggle-theme">
+					<a href="#" onclick="toggleTheme(event)">Dark</a>
+				</small>
+			</footer>
 		</body>
 	</html>`
 }
@@ -105,6 +109,7 @@ func getCSS() string {
 		margin-bottom: .75em;
 		min-height: 80px;
 		top: 0;
+		left: 0;
 		position: fixed;
 		width: 100%;
 		background:#FFF;
@@ -235,36 +240,54 @@ func getCSS() string {
 		margin: 16px 0 32px 0;
 	}
 
+	/* a {
+		text-decoration: none;
+	} */
+
 	a {
+		position: relative;
+		color: #000;
 		text-decoration: none;
 	}
 
 	a:hover {
-		border-bottom: 3px solid #0086B3;
+		color: #0086B3;
 	}
+
+	a::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		bottom: 0;
+		left: 0;
+		background-color:#0086B3;
+		visibility: hidden;
+		transform: scaleX(0);
+		transition: all 0.3s ease-in-out 0s;
+	}
+
+	:hover::before {
+		visibility: visible;
+		transform: scaleX(1);
+	}
+
+	/* a:hover {
+		border-bottom: 3px solid #0086B3;
+	} */
 
 	body.light a {
 		color: #000;
 	}
 
+	body.light .navbar li > a {
+		font-weight:bold;
+		color:rgba(51,51,51,0.8);
+	}
+
 	body.dark a {
 		color: #7da7ef;
 	}
-
-	.toggle-theme {
-		font-size: 0.889rem;
-		margin-top: 40px;
-		padding-top: 24px;
-	}
-	
-	body.light .toggle-theme {
-		border-top: 1px solid #dbe0ed;
-	}
-
-	body.dark .toggle-theme {
-		border-top: 1px solid #2b3241;
-	}
-
 	pre {
 		overflow: auto;
 		padding: 0.25rem 0.75rem;
@@ -320,6 +343,14 @@ func getCSS() string {
 	td {
 		padding: 12px;
 		white-space: nowrap;
+	}
+	footer { 
+		align-items: center; 
+		text-align: center;
+	} 
+
+	footer small {
+		display: inline;
 	}
 	`
 }
