@@ -384,11 +384,13 @@ func writePostsSection(b *bytes.Buffer) {
 	limit := int(math.Max(float64(len(posts))-5, 0))
 
 	for i := len(posts) - 1; i >= limit; i-- {
-		fileName, date, title := getPostMeta(posts[i])
+		_, date, title := getPostMeta(posts[i])
+
+		dateFolder := strings.ReplaceAll(date, "-", "/")
+		path := "/posts/" + dateFolder + "/" + strings.ReplaceAll(title, " ", "-")
 
 		b.WriteString("<li><span class=\"date\">" + date +
-			"</span><a href=\"posts/" +
-			fileName + ".html\">" +
+			"</span><a href=\"" + path + "\">" +
 			title + "</a></li>\n")
 	}
 
@@ -415,7 +417,7 @@ func writePosts() {
 	posts := getDir("_posts")
 
 	for i := 0; i < len(posts); i++ {
-		id, date, title := getPostMeta(posts[i])
+		_, date, title := getPostMeta(posts[i])
 
 		var b bytes.Buffer
 		b.WriteString(getLayoutStart(title + " – " + getSiteTitle()))
@@ -425,7 +427,10 @@ func writePosts() {
 		// b.WriteString("<p><a href=\"../index.html\">←</a></p>")
 		b.WriteString(getLayoutEnd())
 
-		writeFile("posts/"+id, b)
+		dateFolder := strings.ReplaceAll(date, "-", "/")
+		dir := "posts/" + dateFolder + "/" + strings.ReplaceAll(title, " ", "-")
+		os.MkdirAll(dir, 0755)
+		writeFile(dir+"/index", b)
 	}
 }
 
