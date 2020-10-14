@@ -195,13 +195,13 @@ func getCSS() string {
 
 	@media (max-width: 1023.98px) {
 		.container {
-			margin: 28px auto 48px auto;
+			margin: 64px auto 48px auto;
 		}
 	}
 
 	@media (min-width: 1024px) {
 		.container {
-			margin: 48px auto;
+			margin: 64px auto;
 		}
 	}
 
