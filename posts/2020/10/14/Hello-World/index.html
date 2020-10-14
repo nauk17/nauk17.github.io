@@ -1,128 +1,118 @@
 <!DOCTYPE html>
-<html>
+	<html>
+		<head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,400i,500" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400" rel="stylesheet">
+			<link href="assets/styte.css" rel="stylesheet">
+			<link href="/assets/styte.css" rel="stylesheet">
+			<title>Hello World – Internal Place</title>
+			<script>
+				document.addEventListener('DOMContentLoaded', function(event) {
+					if (localStorage.getItem('theme') === 'dark') {
+						setDarkTheme();
+					} else {
+						setLightTheme();
+					}
+				});
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,400i,500" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400" rel="stylesheet">
-	<link href="assets/styte.css" rel="stylesheet">
-	<link href="/assets/styte.css" rel="stylesheet">
-	<title>Hello World – Internal Place</title>
-	<script>
-		document.addEventListener('DOMContentLoaded', function (event) {
-			if (localStorage.getItem('theme') === 'dark') {
-				setDarkTheme();
-			} else {
-				setLightTheme();
-			}
-		});
+				function toggleTheme(event) {
+					event.preventDefault();
 
-		function toggleTheme(event) {
-			event.preventDefault();
+					if (document.body.className === 'dark') {
+						setLightTheme();
+					} else {
+						setDarkTheme();
+					}
+				}
 
-			if (document.body.className === 'dark') {
-				setLightTheme();
-			} else {
-				setDarkTheme();
-			}
-		}
+				function setLightTheme() {
+						document.body.className = 'light';
+						document.getElementsByClassName('toggle-theme')[0].children[0].innerHTML = 'Dark';
+						localStorage.setItem('theme', 'light');
+				}
 
-		function setLightTheme() {
-			document.body.className = 'light';
-			document.getElementsByClassName('toggle-theme')[0].children[0].innerHTML = 'Dark';
-			localStorage.setItem('theme', 'light');
-		}
-
-		function setDarkTheme() {
-			document.body.className = 'dark';
-			document.getElementsByClassName('toggle-theme')[0].children[0].innerHTML = 'Light';
-			localStorage.setItem('theme', 'dark');
-		}
-	</script>
-</head>
-
-<body>
-	<div class="header">
-		<nav class="nav">
-			<div class="nav-content">
-				<h1 class="logo">
-					<a href="/"
-						style="font-size:29px;font-weight:bold;color:rgba(51,51,51,0.8);">Nauk<span>17</span></a>
-				</h1>
-				<ul class="navbar">
-					<li><a href="/about">About me</a></li>
-					<li><a href="#" target="_blank">RSS</a></li>
-				</ul>
+				function setDarkTheme() {
+						document.body.className = 'dark';
+						document.getElementsByClassName('toggle-theme')[0].children[0].innerHTML = 'Light';
+						localStorage.setItem('theme', 'dark');
+				}
+			</script>
+		</head>
+		<body>
+			<div class="header"> 
+				<nav class="nav"> 
+					<div class="nav-content"> 
+						<h1 class="logo">
+							<a href="/" style="font-size:29px;font-weight:bold;color:rgba(51,51,51,0.8);">Nauk<span>17</span></a>
+						</h1> 
+						<ul class="navbar"> 
+							<li><a href="/about">About me</a></li> 
+							<li><a href="#" target="_blank">RSS</a></li> 
+						</ul>
+					</div> 
+				</nav> 
 			</div>
-		</nav>
-	</div>
-	<div class="container">
-		<p class="date">2020-10-14</p>
-		<h1>Hello World</h1>
+			<div class="container">
+			<p class="date">2020-10-14</p><h1>Hello World</h1>
 
-		<h2>Typography Elements in One</h2>
+<h2>Typography Elements in One</h2>
 
-		<p>Let&rsquo;s start with a informative paragraph. <strong>This text is bolded.</strong> But not this one!
-			<em>How about italic text?</em> Cool right? Ok, let&rsquo;s <strong><em>combine</em></strong> them together.
-			Yeah, that&rsquo;s right! I have code to highlight, so <code>ThisIsMyCode()</code>. What a nice! Good people
-			will hyperlink away, so <a href="#">here we go</a> or <a
-				href="http://www.example.com">http://www.example.com</a>.</p>
+<p>Let&rsquo;s start with a informative paragraph. <strong>This text is bolded.</strong> But not this one! <em>How about italic text?</em> Cool right? Ok, let&rsquo;s <strong><em>combine</em></strong> them together. Yeah, that&rsquo;s right! I have code to highlight, so <code>ThisIsMyCode()</code>. What a nice! Good people will hyperlink away, so <a href="#">here we go</a> or <a href="http://www.example.com">http://www.example.com</a>.</p>
 
-		<div class="divider"></div>
+<div class="divider"></div>
 
-		<h2>Headings H1 to H6</h2>
+<h2>Headings H1 to H6</h2>
 
-		<h1>H1 Heading</h1>
+<h1>H1 Heading</h1>
 
-		<h2>H2 Heading</h2>
+<h2>H2 Heading</h2>
 
-		<h3>H3 Heading</h3>
+<h3>H3 Heading</h3>
 
-		<h4>H4 Heading</h4>
+<h4>H4 Heading</h4>
 
-		<h5>H5 Heading</h5>
+<h5>H5 Heading</h5>
 
-		<h6>H6 Heading</h6>
+<h6>H6 Heading</h6>
 
-		<div class="divider"></div>
+<div class="divider"></div>
 
-		<h2>Footnote</h2>
+<h2>Footnote</h2>
 
-		<p>Let&rsquo;s say you have text that you want to refer with a footnote, you can do that too! This is an example
-			for the footnote number one [[^1]]. You can even add more footnotes, with link! [[^2]]</p>
+<p>Let&rsquo;s say you have text that you want to refer with a footnote, you can do that too! This is an example for the footnote number one [[^1]]. You can even add more footnotes, with link! [[^2]]</p>
 
-		<div class="divider"></div>
+<div class="divider"></div>
 
-		<h2>Blockquote</h2>
+<h2>Blockquote</h2>
 
-		<blockquote>
-			<p>Start by doing what&rsquo;s necessary; then do what&rsquo;s possible; and suddenly you are doing the
-				impossible. &ndash;Francis of Assisi</p>
-		</blockquote>
+<blockquote>
+<p>Start by doing what&rsquo;s necessary; then do what&rsquo;s possible; and suddenly you are doing the impossible. &ndash;Francis of Assisi</p>
+</blockquote>
 
-		<p><strong>NOTE:</strong> This theme does NOT support nested blockquotes.</p>
+<p><strong>NOTE:</strong> This theme does NOT support nested blockquotes.</p>
 
-		<div class="divider"></div>
+<div class="divider"></div>
 
-		<h2>List Items</h2>
+<h2>List Items</h2>
 
-		<ol>
-			<li>First order list item</li>
-			<li>Second item</li>
-		</ol>
+<ol>
+<li>First order list item</li>
+<li>Second item</li>
+</ol>
 
-		<ul>
-			<li>Unordered list can use asterisks</li>
-			<li>Or minuses</li>
-			<li>Or pluses</li>
-		</ul>
+<ul>
+<li>Unordered list can use asterisks</li>
+<li>Or minuses</li>
+<li>Or pluses</li>
+</ul>
 
-		<div class="divider"></div>
+<div class="divider"></div>
 
-		<h2>Code Blocks</h2>
+<h2>Code Blocks</h2>
 
-		<pre><code class="language-javascript">var modularpattern = (function() {
+<pre><code class="language-javascript">var modularpattern = (function() {
     // your module code goes here
     var sum = 0 ;
 
@@ -141,123 +131,119 @@ alert(modularpattern.add());    // alerts: 2
 alert(modularpattern.reset());  // alerts: 0
 </code></pre>
 
-		<pre><code class="language-python">s = &quot;Python syntax highlighting&quot;
+<pre><code class="language-python">s = &quot;Python syntax highlighting&quot;
 print s
 </code></pre>
 
-		<pre><code>No language indicated, so no syntax highlighting.
+<pre><code>No language indicated, so no syntax highlighting.
 But let's throw in a &lt;b&gt;tag&lt;/b&gt;.
 </code></pre>
 
-		<div class="divider"></div>
+<div class="divider"></div>
 
-		<h2>Table</h2>
+<h2>Table</h2>
 
-		<h3>Table 1: With Alignment</h3>
+<h3>Table 1: With Alignment</h3>
 
-		<table>
-			<thead>
-				<tr>
-					<th>Tables</th>
-					<th align="center">Are</th>
-					<th align="right">Cool</th>
-				</tr>
-			</thead>
+<table>
+<thead>
+<tr>
+<th>Tables</th>
+<th align="center">Are</th>
+<th align="right">Cool</th>
+</tr>
+</thead>
 
-			<tbody>
-				<tr>
-					<td>col 3 is</td>
-					<td align="center">right-aligned</td>
-					<td align="right">$1600</td>
-				</tr>
+<tbody>
+<tr>
+<td>col 3 is</td>
+<td align="center">right-aligned</td>
+<td align="right">$1600</td>
+</tr>
 
-				<tr>
-					<td>col 2 is</td>
-					<td align="center">centered</td>
-					<td align="right">$12</td>
-				</tr>
+<tr>
+<td>col 2 is</td>
+<td align="center">centered</td>
+<td align="right">$12</td>
+</tr>
 
-				<tr>
-					<td>zebra stripes</td>
-					<td align="center">are neat</td>
-					<td align="right">$1</td>
-				</tr>
-			</tbody>
-		</table>
+<tr>
+<td>zebra stripes</td>
+<td align="center">are neat</td>
+<td align="right">$1</td>
+</tr>
+</tbody>
+</table>
 
-		<h3>Table 2: With Typography Elements</h3>
+<h3>Table 2: With Typography Elements</h3>
 
-		<table>
-			<thead>
-				<tr>
-					<th>Markdown</th>
-					<th>Less</th>
-					<th>Pretty</th>
-				</tr>
-			</thead>
+<table>
+<thead>
+<tr>
+<th>Markdown</th>
+<th>Less</th>
+<th>Pretty</th>
+</tr>
+</thead>
 
-			<tbody>
-				<tr>
-					<td><em>Still</em></td>
-					<td><code>renders</code></td>
-					<td><strong>nicely</strong></td>
-				</tr>
+<tbody>
+<tr>
+<td><em>Still</em></td>
+<td><code>renders</code></td>
+<td><strong>nicely</strong></td>
+</tr>
 
-				<tr>
-					<td>1</td>
-					<td>2</td>
-					<td>3</td>
-				</tr>
-			</tbody>
-		</table>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
 
-		<div class="divider"></div>
+<div class="divider"></div>
 
-		<h2>Horizontal Line</h2>
+<h2>Horizontal Line</h2>
 
-		<p>The HTML <code>&lt;hr&gt;</code> element is for creating a &ldquo;thematic break&rdquo; between
-			paragraph-level elements. In markdown, you can create a <code>&lt;hr&gt;</code> with any of the following:
-		</p>
+<p>The HTML <code>&lt;hr&gt;</code> element is for creating a &ldquo;thematic break&rdquo; between paragraph-level elements. In markdown, you can create a <code>&lt;hr&gt;</code> with any of the following:</p>
 
-		<ul>
-			<li><code>___</code>: three consecutive underscores</li>
-			<li><code>---</code>: three consecutive dashes</li>
-			<li><code>***</code>: three consecutive asterisks</li>
-		</ul>
+<ul>
+<li><code>___</code>: three consecutive underscores</li>
+<li><code>---</code>: three consecutive dashes</li>
+<li><code>***</code>: three consecutive asterisks</li>
+</ul>
 
-		<p>renders to:</p>
+<p>renders to:</p>
 
-		<hr />
+<hr />
 
-		<hr />
+<hr />
 
-		<hr />
+<hr />
 
-		<div class="divider"></div>
+<div class="divider"></div>
 
-		<h2>Media</h2>
+<h2>Media</h2>
 
-		<h3>YouTube Embedded Iframe</h3>
+<h3>YouTube Embedded Iframe</h3>
 
-		<div class="video-container"><iframe src="https://www.youtube.com/embed/n1a7o44WxNo" frameborder="0"
-				allowfullscreen></iframe></div>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/n1a7o44WxNo" frameborder="0" allowfullscreen></iframe></div>
 
-		<h3>Image</h3>
+<h3>Image</h3>
 
-		<p><img src="http://octodex.github.com/images/minion.png" alt="Minion" /></p>
+<p><img src="http://octodex.github.com/images/minion.png" alt="Minion" /></p>
 
-		<hr />
+<hr />
 
-		<p>Footnote:</p>
+<p>Footnote:</p>
 
-		<p>[^1]: 1: Footnote number one yeah baby!</p>
+<p>[^1]: 1: Footnote number one yeah baby!</p>
 
-		<p>[^2]: 2: A footnote you can link to - <a href="#">click here!</a></p>
+<p>[^2]: 2: A footnote you can link to - <a href="#">click here!</a></p>
 
-		<p class="toggle-theme">
-			<a href="#" onclick="toggleTheme(event)">Dark</a>
-		</p>
-	</div>
-</body>
-
-</html>
+					<p class="toggle-theme">
+						<a href="#" onclick="toggleTheme(event)">Dark</a>
+					</p>
+			</div>
+		</body>
+	</html>

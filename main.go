@@ -107,6 +107,7 @@ func getCSS() string {
 		top: 0;
 		position: fixed;
 		width: 100%;
+		background:#FFF;
 	}
 
 	.navbar {
