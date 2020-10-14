@@ -61,7 +61,7 @@ func getLayoutStart(title string) string {
 							<a href="/">Nauk<span>17</span></a>
 						</h1> 
 						<ul class="navbar"> 
-							<li><a href="/pages">About me</a></li> 
+							<li><a href="/about">About me</a></li> 
 							<li><a href="#" target="_blank">RSS</a></li> 
 						</ul>
 					</div> 
@@ -479,10 +479,26 @@ func writePages() {
 	}
 }
 
+func writeAbout() {
+	pages := getDir("_about")
+
+	for i := 0; i < len(pages); i++ {
+		_, title := getPageMeta(pages[i])
+
+		var b bytes.Buffer
+		b.WriteString(getLayoutStart(title + " – " + getSiteTitle()))
+		b.Write(blackfriday.MarkdownCommon(getFile("_about/" + pages[i].Name())))
+		b.WriteString(getLayoutEnd())
+
+		writeFile("about/index", b)
+	}
+}
+
 func createFilesAndDirs() {
 	os.MkdirAll("_sections", 0755)
 	os.MkdirAll("_posts", 0755)
 	os.MkdirAll("_pages", 0755)
+	os.MkdirAll("_about", 0755)
 
 	// if _, err := os.Stat("_sections/header.md"); os.IsNotExist(err) {
 	// 	err := ioutil.WriteFile(
@@ -520,6 +536,7 @@ func createFilesAndDirs() {
 	os.MkdirAll("posts", 0755)
 	os.MkdirAll("pages", 0755)
 	os.MkdirAll("assets", 0755)
+	os.MkdirAll("about", 0755)
 }
 
 func main() {
@@ -529,4 +546,5 @@ func main() {
 	writePosts()
 	writePostsPage()
 	writePages()
+	writeAbout()
 }
