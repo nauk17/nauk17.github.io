@@ -58,7 +58,7 @@ func getLayoutStart(title string) string {
 				<nav class="nav"> 
 					<div class="nav-content"> 
 						<h1 class="logo">
-							<a href="/">Nauk<span>17</span></a>
+							<a href="/" style="font-size:29px;font-weight:bold;color:rgba(51,51,51,0.8);">Nauk<span>17</span></a>
 						</h1> 
 						<ul class="navbar"> 
 							<li><a href="/about">About me</a></li> 
