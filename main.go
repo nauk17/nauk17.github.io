@@ -16,6 +16,7 @@ func getLayoutStart(title string) string {
 		<head>
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="icon" href="/images/icon.jpg" type="image/gif" sizes="16x16">
 			<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,400i,500" rel="stylesheet">
 			<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400" rel="stylesheet">
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -600,6 +601,7 @@ func createFilesAndDirs() {
 	os.MkdirAll("pages", 0755)
 	os.MkdirAll("assets", 0755)
 	os.MkdirAll("about", 0755)
+	os.MkdirAll("images", 0755)
 }
 
 func main() {
