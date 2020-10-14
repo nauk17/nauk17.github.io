@@ -92,7 +92,7 @@ func getCSS() string {
 
 	body.light {
 		background-color: #fdffff;
-		color: #0f3763;
+		color: rgba(51,51,51,0.8);
 	}
 
 	body.dark {
@@ -182,8 +182,8 @@ func getCSS() string {
 
 	body.dark h1,
 	body.dark h2,
-	body.dark h3 {
-		color: #c8ddff;
+	body.light h3 {
+		color: rgba(51,51,51,0.8);
 	}
 
 	@media (max-width: 1023.98px) {
@@ -238,7 +238,7 @@ func getCSS() string {
 	}
 
 	body.light a {
-		color: #006aee;
+		color: rgba(51,51,51,0.8);
 	}
 
 	body.dark a {
