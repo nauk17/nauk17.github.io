@@ -3,8 +3,8 @@ package main
 import (
 	"bytes"
 	"io/ioutil"
-	"math"
 	"os"
+	"sort"
 	"strings"
 
 	"github.com/russross/blackfriday"
@@ -211,17 +211,21 @@ func getCSS() string {
 		padding: 0;
 	}
 
-	/*nav li {
-		margin-bottom: 8px;
-	}*/
+	nav li {
+		margin-left: 25px;
+	}
 
 	nav li .date {
-		display: inline-block;
+		float: right;
 		width: 104px;
 		margin-top: 0;
 		font-size: 0.8em;
 		color: #777777;
 		font-style: italic;
+	}
+
+	.year {
+		margin-bottom: 0;
 	}
 
 	.all-posts {
@@ -234,11 +238,11 @@ func getCSS() string {
 	}
 
 	a:hover {
-		text-decoration: underline;
+		border-bottom: 3px solid #0086B3;
 	}
 
 	body.light a {
-		color: rgba(51,51,51,0.8);
+		color: #000;
 	}
 
 	body.dark a {
@@ -385,14 +389,33 @@ func writePostsSection(b *bytes.Buffer) {
 	b.WriteString("<nav class=\"posts\"><ul>")
 
 	posts := getDir("_posts")
-	limit := int(math.Max(float64(len(posts))-5, 0))
-	for i := len(posts) - 1; i >= limit; i-- {
-		_, date, title := getPostMeta(posts[i])
+	var years []string
+	for i := len(posts) - 1; i >= 0; i-- {
+		_, date, _ := getPostMeta(posts[i])
+		y := strings.Split(date, "-")[0]
+		i := sort.Search(len(years), func(i int) bool { return y <= years[i] })
+		if i < len(years) && years[i] == y {
+			continue
+		}
+		years = append(years, y)
+	}
+	// limit := int(math.Max(float64(len(posts))-5, 0))
+	for _, year := range years {
+		b.WriteString("<h1 class=\"year\">" + year + "</h1>")
+		for i := len(posts) - 1; i >= 0; i-- {
+			_, date, title := getPostMeta(posts[i])
 
-		dateFolder := strings.ReplaceAll(date, "-", "/")
-		path := "/posts/" + dateFolder + "/" + strings.ReplaceAll(title, " ", "-")
+			y := strings.Split(date, "-")[0]
 
-		b.WriteString("<li><a href=\"" + path + "\">" + title + "</a><span class=\"date\">" + date + "</span></li>\n")
+			if y != year {
+				continue
+			}
+
+			dateFolder := strings.ReplaceAll(date, "-", "/")
+			path := "/posts/" + dateFolder + "/" + strings.ReplaceAll(title, " ", "-")
+
+			b.WriteString("<li><a class=\"post-link\" href=\"" + path + "\">" + title + "</a><span class=\"date\">" + date + "</span></li>\n")
+		}
 	}
 
 	b.WriteString("</ul></nav><p class=\"all-posts\"><a href=\"all-posts.html\">All posts</a></p>")

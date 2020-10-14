@@ -127,17 +127,21 @@
 		padding: 0;
 	}
 
-	/*nav li {
-		margin-bottom: 8px;
-	}*/
+	nav li {
+		margin-left: 25px;
+	}
 
 	nav li .date {
-		display: inline-block;
+		float: right;
 		width: 104px;
 		margin-top: 0;
 		font-size: 0.8em;
 		color: #777777;
 		font-style: italic;
+	}
+
+	.year {
+		margin-bottom: 0;
 	}
 
 	.all-posts {
@@ -150,11 +154,11 @@
 	}
 
 	a:hover {
-		text-decoration: underline;
+		border-bottom: 3px solid #0086B3;
 	}
 
 	body.light a {
-		color: rgba(51,51,51,0.8);
+		color: #000;
 	}
 
 	body.dark a {
