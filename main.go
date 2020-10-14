@@ -199,6 +199,7 @@ func getCSS() string {
 	}
 
 	.container {
+		margin-left: 80px;
 		padding: 1.5em;
 		margin-left: auto;
 		margin-right: auto;
@@ -470,16 +471,21 @@ func writePostsPage() {
 
 	b.WriteString(getLayoutStart("All posts – " + getSiteTitle()))
 	// b.WriteString("<p><a href=\"index.html\">←</a></p>")
-	b.WriteString("<h1>All posts</h1>")
-	b.WriteString("<nav class=\"posts\"><ul>")
+	b.WriteString("<h1>All posts</h1>\n")
+	b.WriteString("<nav class=\"posts\"><ul>\n")
 
 	for i := len(posts) - 1; i >= 0; i-- {
-		id, date, title := getPostMeta(posts[i])
+		_, date, title := getPostMeta(posts[i])
 
-		b.WriteString("<li><span class=\"date\">" + date +
-			"</span><a href=\"posts/" +
-			id + ".html\">" +
-			title + "</a></li>\n")
+		dateFolder := strings.ReplaceAll(date, "-", "/")
+		path := "/posts/" + dateFolder + "/" + strings.ReplaceAll(title, " ", "-")
+
+		b.WriteString("<li><a class=\"post-link\" href=\"" + path + "\">" + title + "</a><span class=\"date\">" + date + "</span></li>\n")
+
+		// b.WriteString("<li><span class=\"date\">" + date +
+		// 	"</span><a href=\"posts/" +
+		// 	id + ".html\">" +
+		// title + "</a></li>\n")
 	}
 
 	// b.WriteString("</ul></nav><p><a href=\"index.html\">←</a></p>")
