@@ -211,9 +211,9 @@ func getCSS() string {
 		padding: 0;
 	}
 
-	nav li {
+	/*nav li {
 		margin-bottom: 8px;
-	}
+	}*/
 
 	nav li .date {
 		display: inline-block;
@@ -393,7 +393,7 @@ func writePostsSection(b *bytes.Buffer) {
 		dateFolder := strings.ReplaceAll(date, "-", "/")
 		path := "/posts/" + dateFolder + "/" + strings.ReplaceAll(title, " ", "-")
 
-		b.WriteString("<li><h2><a href=\"" + path + "\">" + title + "</a></h2><p class=\"date\">" + date + "</p></li>\n")
+		b.WriteString("<li><a href=\"" + path + "\">" + title + "</a><span class=\"date\">" + date + "</span></li>\n")
 	}
 
 	b.WriteString("</ul></nav><p class=\"all-posts\"><a href=\"all-posts.html\">All posts</a></p>")

@@ -127,9 +127,9 @@
 		padding: 0;
 	}
 
-	nav li {
+	/*nav li {
 		margin-bottom: 8px;
-	}
+	}*/
 
 	nav li .date {
 		display: inline-block;
