@@ -411,9 +411,9 @@ func getPostMeta(fi os.FileInfo) (string, string, string) {
 	return id, date, title
 }
 
-func getPageMeta(fi os.FileInfo) (string, string) {
+func getAboutMeta(fi os.FileInfo) (string, string) {
 	id := fi.Name()[:len(fi.Name())-3]
-	title := strings.Split(string(getFile("_pages/"+fi.Name())), "\n")[0][2:]
+	title := strings.Split(string(getFile("_about/"+fi.Name())), "\n")[0][2:]
 
 	return id, title
 }
@@ -463,22 +463,6 @@ func writePostsSection(b *bytes.Buffer) {
 	b.WriteString("</ul></nav><p class=\"all-posts\"><a href=\"all-posts.html\">All posts</a></p>")
 }
 
-// func writePagesSection(b *bytes.Buffer) {
-// 	b.WriteString("<h2>Pages</h2><nav class=\"pages\"><ul>")
-
-// 	pages := getDir("_pages")
-
-// 	for i := 0; i < len(pages); i++ {
-// 		id, title := getPageMeta(pages[i])
-
-// 		b.WriteString("<li><a href=\"pages/" +
-// 			id + ".html\">" +
-// 			title + "</a></li>\n")
-// 	}
-
-// 	b.WriteString("</ul></nav>")
-// }
-
 func writePosts() {
 	posts := getDir("_posts")
 
@@ -511,7 +495,6 @@ func writePostsPage() {
 	var b bytes.Buffer
 
 	b.WriteString(getLayoutStart("All posts – " + getSiteTitle()))
-	// b.WriteString("<p><a href=\"index.html\">←</a></p>")
 	b.WriteString("<h1>All posts</h1>\n")
 	b.WriteString("<nav class=\"posts\"><ul>\n")
 
@@ -522,14 +505,8 @@ func writePostsPage() {
 		path := "/posts/" + dateFolder + "/" + strings.ReplaceAll(title, " ", "-")
 
 		b.WriteString("<li><a class=\"post-link\" href=\"" + path + "\">" + title + "</a><span class=\"date\">" + date + "</span></li>\n")
-
-		// b.WriteString("<li><span class=\"date\">" + date +
-		// 	"</span><a href=\"posts/" +
-		// 	id + ".html\">" +
-		// title + "</a></li>\n")
 	}
 
-	// b.WriteString("</ul></nav><p><a href=\"index.html\">←</a></p>")
 	b.WriteString(getLayoutEnd())
 	writeFile("all-posts", b)
 }
@@ -559,28 +536,11 @@ func writeRSS() {
 
 }
 
-// func writePages() {
-// 	pages := getDir("_pages")
-
-// 	for i := 0; i < len(pages); i++ {
-// 		fileName, title := getPageMeta(pages[i])
-
-// 		var b bytes.Buffer
-// 		b.WriteString(getLayoutStart(title + " – " + getSiteTitle()))
-// 		// b.WriteString("<p><a href=\"../index.html\">←</a></p>")
-// 		b.Write(blackfriday.MarkdownCommon(getFile("_pages/" + pages[i].Name())))
-// 		// b.WriteString("<p><a href=\"../index.html\">←</a></p>")
-// 		b.WriteString(getLayoutEnd())
-
-// 		writeFile("pages/"+fileName, b)
-// 	}
-// }
-
 func writeAbout() {
 	pages := getDir("_about")
 
 	for i := 0; i < len(pages); i++ {
-		_, title := getPageMeta(pages[i])
+		_, title := getAboutMeta(pages[i])
 
 		var b bytes.Buffer
 		b.WriteString(getLayoutStart(title + " – " + getSiteTitle()))
@@ -594,11 +554,9 @@ func writeAbout() {
 func createFilesAndDirs() {
 	os.MkdirAll("_sections", 0755)
 	os.MkdirAll("_posts", 0755)
-	os.MkdirAll("_pages", 0755)
 	os.MkdirAll("_about", 0755)
 
 	os.MkdirAll("posts", 0755)
-	os.MkdirAll("pages", 0755)
 	os.MkdirAll("assets", 0755)
 	os.MkdirAll("about", 0755)
 	os.MkdirAll("images", 0755)
@@ -610,7 +568,6 @@ func main() {
 	writeIndex()
 	writePosts()
 	writePostsPage()
-	// writePages()
 	writeAbout()
 	writeRSS()
 }
