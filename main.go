@@ -64,6 +64,7 @@ func getLayoutStart(title string) string {
 						</h1> 
 						<ul class="navbar"> 
 							<li><a href="/about">About me</a></li> 
+							<li><a href="/pages">Pages</a></li> 
 							<li><a href="/rss.xml" target="_blank">RSS</a></li> 
 						</ul>
 					</div> 
@@ -80,6 +81,16 @@ func getLayoutEnd() string {
 				<small>© 2020 Quan Nguyen</small>
 				<small class="toggle-theme">
 					<a href="#" onclick="toggleTheme(event)">Dark</a>
+				</small>
+				<br>
+				<small>
+					<a href="https://github.com/nauk17"><i class="fa fa-github" aria-hidden="true"></i></a>
+				</small>
+				<small>
+					<a href="https://www.linkedin.com/in/quannv132"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+				</small>
+				<small>
+					<a href="https://www.quora.com/profile/Nguyen-Quan-84"><i class="fa fa-quora" aria-hidden="true"></i></i></a>
 				</small>
 			</footer>
 		</body>
@@ -247,7 +258,7 @@ func getCSS() string {
 
 	a {
 		position: relative;
-		color: #000;
+		color: #0086B3;
 		text-decoration: none;
 	}
 
@@ -278,6 +289,10 @@ func getCSS() string {
 	} */
 
 	body.light a {
+		color: #0086B3;
+	}
+
+	body.light .post-link {
 		color: #000;
 	}
 
@@ -352,6 +367,14 @@ func getCSS() string {
 
 	footer small {
 		display: inline;
+	}
+	body.light small > a {
+		color: rgba(51,51,51,0.8);
+		text-decoration: none;
+	}
+
+	body.light small > a:hover {
+		color: #0086B3
 	}
 	`
 }
@@ -460,7 +483,7 @@ func writePostsSection(b *bytes.Buffer) {
 		}
 	}
 
-	b.WriteString("</ul></nav><p class=\"all-posts\"><a href=\"all-posts.html\">All posts</a></p>")
+	// b.WriteString("</ul></nav><p class=\"all-posts\"><a href=\"all-posts.html\">All posts</a></p>")
 }
 
 func writePosts() {
@@ -508,7 +531,7 @@ func writePostsPage() {
 	}
 
 	b.WriteString(getLayoutEnd())
-	writeFile("all-posts", b)
+	writeFile("pages/index", b)
 }
 
 func writeRSS() {
@@ -560,6 +583,7 @@ func createFilesAndDirs() {
 	os.MkdirAll("assets", 0755)
 	os.MkdirAll("about", 0755)
 	os.MkdirAll("images", 0755)
+	os.MkdirAll("pages", 0755)
 }
 
 func main() {
