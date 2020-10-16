@@ -12,9 +12,13 @@ Aha, you can see, my first step is done...
 
 ## What is the offical tutorial for your programming language?
 Hum, as mentioned above, Golang is designed at Google, a giant technical company and the best way to learn is through the offical tutorial. The list that you can follow is:
+
 - [A tour of Go](https://tour.golang.org/)
+
 + [Tutorial by Le The Thong](https://hongthele.blogspot.com/2018/11/concurrency-trong-go.html) (Vietnamese version)
+
 * [Of course, golang by example](https://gobyexample.com/)
+
 - [Building Blockchain in Go](https://jeiwan.net/posts/building-blockchain-in-go-part-1/) with 7 series
 
 ## Finally
