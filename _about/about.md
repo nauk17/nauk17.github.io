@@ -1,6 +1,6 @@
 # About
 
-<img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px"> Hi, My name is Quan, a innocent devloper from Vietnam and a fulltime software engineer at [One Mount Group](#).
+<img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px"> Hi, My name is Quan, an innocent developer from Vietnam and a fulltime software engineer at [One Mount Group](#).
 
 I have a thirst for knowledge. I strongly believe that knowledge will make us become better humans.
 
