@@ -2,9 +2,9 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"io/ioutil"
 	"os"
-	"sort"
 	"strings"
 
 	"github.com/russross/blackfriday"
@@ -455,15 +455,18 @@ func writePostsSection(b *bytes.Buffer) {
 
 	posts := getDir("_posts")
 	var years []string
+loop:
 	for i := len(posts) - 1; i >= 0; i-- {
 		_, date, _ := getPostMeta(posts[i])
 		y := strings.Split(date, "-")[0]
-		i := sort.Search(len(years), func(i int) bool { return y <= years[i] })
-		if i < len(years) && years[i] == y {
-			continue
+		for _, year := range years {
+			if year == y {
+				continue loop
+			}
 		}
 		years = append(years, y)
 	}
+	fmt.Println(years)
 	// limit := int(math.Max(float64(len(posts))-5, 0))
 	for _, year := range years {
 		b.WriteString("<h1 class=\"year\">" + year + "</h1>")
