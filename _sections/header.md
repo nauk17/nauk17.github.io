@@ -1,1 +1,1 @@
-# Internal Place
+#### Sometimes, something needs to be rewritten, ship code for a cup of coffee

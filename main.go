@@ -10,13 +10,15 @@ import (
 	"github.com/russross/blackfriday"
 )
 
+var quannguyen string = "QUAN NGUYEN"
+
 func getLayoutStart(title string) string {
 	return `<!DOCTYPE html>
 	<html>
 		<head>
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<link rel="icon" href="/images/icon.jpg" type="image/gif" sizes="16x16">
+			<link rel="icon" href="/images/puertigris.png" type="image/gif" sizes="16x16">
 			<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,400i,500" rel="stylesheet">
 			<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400" rel="stylesheet">
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -60,7 +62,7 @@ func getLayoutStart(title string) string {
 				<nav class="nav"> 
 					<div class="nav-content"> 
 						<h1 class="logo">
-							<a href="/" style="font-size:29px;font-weight:bold;color:rgba(51,51,51,0.8);">Nauk</a>
+							<a class="nohover" href="/" style="font-size:29px;font-weight:bold;color:rgba(51,51,51,0.8);"><b>QUAN</b> NGUYEN</a>
 						</h1> 
 						<ul class="navbar"> 
 							<li><a href="/about">About me</a></li> 
@@ -80,11 +82,11 @@ func getLayoutEnd() string {
 			<footer>
 				<small>© 2020 Quan Nguyen</small>
 				<small class="toggle-theme">
-					<a href="#" onclick="toggleTheme(event)">Dark</a>
+					<a class="nohover" href="#" onclick="toggleTheme(event)">Dark</a>
 				</small>
 				<br>
 				<small>
-					<a href="https://github.com/nauk17"><i class="fa fa-github" aria-hidden="true"></i></a>
+					<a href="https://github.com/puertigris"><i class="fa fa-github" aria-hidden="true"></i></a>
 				</small>
 				<small>
 					<a href="https://www.linkedin.com/in/quannv132"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
@@ -238,7 +240,7 @@ func getCSS() string {
 		float: right;
 		width: 104px;
 		margin-top: 0;
-		font-size: 0.8em;
+		font-size: 0.9em;
 		color: #777777;
 		font-style: italic;
 	}
@@ -276,7 +278,11 @@ func getCSS() string {
 		background-color:#0086B3;
 		visibility: hidden;
 		transform: scaleX(0);
-		transition: all 0.3s ease-in-out 0s;
+		transition: all 0.1s ease-in-out 0s;
+	}
+	
+	.nohover::before {
+		position: unset
 	}
 
 	:hover::before {
@@ -443,7 +449,7 @@ func getAboutMeta(fi os.FileInfo) (string, string) {
 
 func writeIndex() {
 	var b bytes.Buffer
-	b.WriteString(getLayoutStart(getSiteTitle()))
+	b.WriteString(getLayoutStart(quannguyen))
 	b.Write(blackfriday.MarkdownCommon(getFile("_sections/header.md")))
 	writePostsSection(&b)
 	b.WriteString(getLayoutEnd())
@@ -496,7 +502,7 @@ func writePosts() {
 		_, date, title := getPostMeta(posts[i])
 
 		var b bytes.Buffer
-		b.WriteString(getLayoutStart(title + " – " + getSiteTitle()))
+		b.WriteString(getLayoutStart(title + " – " + quannguyen))
 		// b.WriteString("<p><a href=\"../index.html\">←</a></p>")
 		b.WriteString("<p class=\"date\">" + date + "</p>")
 		b.Write(blackfriday.MarkdownCommon(getFile("_posts/" + posts[i].Name())))
@@ -520,7 +526,7 @@ func writePostsPage() {
 	posts := getDir("_posts")
 	var b bytes.Buffer
 
-	b.WriteString(getLayoutStart("All posts – " + getSiteTitle()))
+	b.WriteString(getLayoutStart("All posts – " + quannguyen))
 	b.WriteString("<h1>All posts</h1>\n")
 	b.WriteString("<nav class=\"posts\"><ul>\n")
 
@@ -569,7 +575,7 @@ func writeAbout() {
 		_, title := getAboutMeta(pages[i])
 
 		var b bytes.Buffer
-		b.WriteString(getLayoutStart(title + " – " + getSiteTitle()))
+		b.WriteString(getLayoutStart(title + " – " + quannguyen))
 		b.Write(blackfriday.MarkdownCommon(getFile("_about/" + pages[i].Name())))
 		b.WriteString(getLayoutEnd())
 
