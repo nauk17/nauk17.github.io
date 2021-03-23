@@ -1,4 +1,4 @@
-# Hello World
+[comment]: <> (Hello World)
 
 ## Kick off.
 Let's start blogging.
