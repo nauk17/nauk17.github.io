@@ -6,384 +6,79 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/russross/blackfriday"
 )
 
-var quannguyen string = "QUAN NGUYEN"
-
-func getLayoutStart(title string) string {
+func getLayoutStart(isIntro bool) string {
+	intro := ""
+	if isIntro {
+		intro = `<p class="site-intro">Hello, it's Puertigris</p>`
+	}
 	return `<!DOCTYPE html>
-	<html>
-		<head>
-			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<link rel="icon" href="/images/puertigris.png" type="image/gif" sizes="16x16">
-			<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,400i,500" rel="stylesheet">
-			<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400" rel="stylesheet">
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-			<link href="assets/styte.css" rel="stylesheet">
-			<link href="/assets/styte.css" rel="stylesheet">
-			<title>` + title + `</title>
-			<script>
-				document.addEventListener('DOMContentLoaded', function(event) {
-					if (localStorage.getItem('theme') === 'dark') {
-						setDarkTheme();
-					} else {
-						setLightTheme();
-					}
-				});
+			<html>
+			  <head>
+			  <meta charset="utf-8">
+			  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+			  <meta name="viewport" content="width=device-width, initial-scale=1">
+			  <title>QUAN NGUYEN</title>
+			  <link rel="stylesheet" href="/assets/styte.css">
+    		  <link rel="stylesheet" href="assets/styte.css">
+			  <link rel="alternate" type="application/rss+xml" title="puertigris" href="rss.xml">
+			</head>
+			
+			  <body>
+				<div class="page-content">
+					<div class="home">
+						<section class="site-header">
+							<h1 class="smallcap"><a class="site-title" href="/">QUAN NGUYEN</a></h1>
+							` + getNav() + `
+							` + intro + `
+						</section>
+					`
+}
 
-				function toggleTheme(event) {
-					event.preventDefault();
-
-					if (document.body.className === 'dark') {
-						setLightTheme();
-					} else {
-						setDarkTheme();
-					}
-				}
-
-				function setLightTheme() {
-					document.body.className = 'light';
-					document.getElementsByClassName('toggle-theme')[0].children[0].innerHTML = '<i class="fa fa-moon-o"></i>';
-					localStorage.setItem('theme', 'light');
-				}
-
-				function setDarkTheme() {
-						document.body.className = 'dark';
-						document.getElementsByClassName('toggle-theme')[0].children[0].innerHTML = '<i class="fa fa-sun-o"></i>';
-						localStorage.setItem('theme', 'dark');
-				}
-			</script>
-		</head>
-		<body>
-			<div class="header"> 
-				<nav class="nav"> 
-					<div class="nav-content"> 
-						<h1 class="logo">
-							<a class="nohover" href="/" style="font-size:29px;font-weight:bold;color:rgba(51,51,51,0.8);"><b>QUAN</b> NGUYEN</a>
-						</h1> 
-						<ul class="navbar"> 
-							<li><a href="/about">About me</a></li> 
-							<li><a href="/pages">Pages</a></li> 
-							<li><a href="/rss.xml" target="_blank">RSS</a></li> 
-						</ul>
-					</div> 
-				</nav> 
-			</div>
-			<div class="container">
-			`
+func getNav() string {
+	return `<p class="site-nav"><a href="/">Home</a> / <a href="/about">About</a> / <a href="/rss.xml">RSS</a></p>`
 }
 
 func getLayoutEnd() string {
 	return `
-			</div>
-			<footer>
-				<small>© 2020 Quan Nguyen</small>
-				<small class="toggle-theme">
-					<a class="nohover" href="#" onclick="toggleTheme(event)">Dark</a>
-				</small>
-				<br>
-				<small>
-					<a href="https://github.com/puertigris"><i class="fa fa-github" aria-hidden="true"></i></a>
-				</small>
-				<small>
-					<a href="https://www.linkedin.com/in/quannv132"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-				</small>
-				<small>
-					<a href="https://www.quora.com/profile/Nguyen-Quan-84"><i class="fa fa-quora" aria-hidden="true"></i></i></a>
-				</small>
-			</footer>
-		</body>
-	</html>`
+			<div class="copyright">
+        <p>&copy; 2021 <a href="/"><strong>PuerTigris</strong></a></p>
+      </div>
+    </div>
+    
+  </body>
+</html>`
 }
 
-func getCSS() string {
-	return `
-	body {
-		font-family: "Overpass Mono",monospace;
-		line-height: 1.875;
-		font-weight: 400;
-		font-size: 16px;
-	}
-
-	body.light {
-		background-color: #fdffff;
-		color: rgba(51,51,51,0.8);
-	}
-
-	body.dark {
-		background-color: #141c2b;
-		color: #d9dce4;
-	}
-
-	.header {
-		border-bottom: 1px solid #d9d9d9;
-		margin-bottom: .75em;
-		min-height: 80px;
-		top: 0;
-		left: 0;
-		position: fixed;
-		width: 100%;
-		background:#FFF;
-	}
-
-	.navbar {
-		float: right;
-		margin: 0;
-		position: relative;
-		padding: 0;
-		pointer-events: all;
-		cursor: pointer;
-	}
-
-	.logo {
-		float: left;
-		margin: 0 0 1em 0;
-		cursor: pointer;
-		letter-spacing: 0.8px;
-		font-size: 20px;
-		line-height: 28px;
-		font-weight: 300;
-	}
-
-	.navbar li {
-		display: inline-block;
-		padding: 0 .6em;
-	}
-
-	@media (max-width: 1023.98px) {
-		.nav-content {
-			margin: 28px auto 48px auto;
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.nav-content {
-			margin: 48px auto;
-		}
-	}
-
-	.nav-content {
-		margin: auto;
-		padding: 1.5em;
-		margin-left: auto;
-		margin-right: auto;
-		max-width: 800px;
-		font-weight: normal;
-	}
-
-	/* h1, h2, h3 {
-	 	font-weight: 300;
-	 }*/
-
-	h1 {
-		font-size: 26.79296875px;
-		margin-top: 24px;
-	}
-
-	h2 {
-		margin-bottom: 0;
-		line-height: 1.2em;
-		margin-top: 1em;
-	}
-
-	h3 {
-		font-size: 19px;
-		margin-top: 40px;
-	}
-
-	body.light h1,
-	body.light h2,
-	body.light h3 {
-		color: rgba(51,51,51,0.8);
-	}
-
-	body.dark h1,
-	body.dark h2,
-	body.dark h3 {
-		color: #c8ddff;
-	}
-
-	@media (max-width: 1023.98px) {
-		.container {
-			margin: 64px auto 48px auto;
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.container {
-			margin: 64px auto;
-		}
-	}
-
-	.container {
-		margin-left: 80px;
-		padding: 1.5em;
-		margin-left: auto;
-		margin-right: auto;
-		max-width: 800px;
-		font-weight: normal;
-	}
-
-	nav ul {
-		list-style-type: none;
-		padding: 0;
-	}
-
-	nav li {
-		margin-left: 25px;
-	}
-
-	nav li .date {
-		float: right;
-		width: 104px;
-		margin-top: 0;
-		font-size: 0.9em;
-		color: #777777;
-		font-style: italic;
-	}
-
-	.year {
-		margin-bottom: 0;
-	}
-
-	.all-posts {
-		font-size: 13.47368421052632px;
-		margin: 16px 0 32px 0;
-	}
-
-	/* a {
-		text-decoration: none;
-	} */
-
-	a {
-		position: relative;
-		color: #0086B3;
-		text-decoration: none;
-	}
-
-	a:hover {
-		color: #0086B3;
-	}
-
-	a::before {
-		content: "";
-		position: absolute;
-		width: 100%;
-		height: 2px;
-		bottom: 0;
-		left: 0;
-		background-color:#0086B3;
-		visibility: hidden;
-		transform: scaleX(0);
-		transition: all 0.1s ease-in-out 0s;
-	}
-	
-	.nohover::before {
-		position: unset
-	}
-
-	:hover::before {
-		visibility: visible;
-		transform: scaleX(1);
-	}
-
-	/* a:hover {
-		border-bottom: 3px solid #0086B3;
-	} */
-
-	body.light a {
-		color: #0086B3;
-	}
-
-	body.light .post-link {
-		color: #000;
-	}
-
-	body.light .navbar li > a {
-		font-weight:bold;
-		color:rgba(51,51,51,0.8);
-	}
-
-	body.dark a {
-		color: #7da7ef;
-	}
-	pre {
-		overflow: auto;
-		padding: 0.25rem 0.75rem;
-		margin-bottom: 32px;
-	}
-
-	body.light pre {
-		background-color: #f4f7ff;
-	}
-
-	body.dark pre {
-		background-color: #1a2231;
-	}
-
-	code {
-		font-size: 0.875em;
-		font-family: 'IBM Plex Mono', monospace;
-	}
-
-	table {
-		border-collapse: collapse;
-		width: 100%;
-		margin-bottom: 32px;
-	}
-
-	@media (max-width: 1023.98px) {
-		table {
-			font-size: 14px;
-		}
-	}
-
-	@media (min-width: 1024px) {
-		table {
-			font-size: 15px;
-		}
-	}
-
-	body.light tr {
-		border-bottom: 0.5px solid #bdc5d8;
-	}
-
-	body.dark tr {
-		border-bottom: 0.5px solid #424957;
-	}
-
-	th {
-		text-align: left;
-		font-weight: 500;
-		padding: 12px;
-		white-space: nowrap;
-	}
-
-	td {
-		padding: 12px;
-		white-space: nowrap;
-	}
-	footer { 
-		align-items: center; 
-		text-align: center;
-	} 
-
-	footer small {
-		display: inline;
-	}
-	body.light small > a {
-		color: rgba(51,51,51,0.8);
-		text-decoration: none;
-	}
-
-	body.light small > a:hover {
-		color: #0086B3
-	}
-	`
+func getPostPage(title string, date string) string {
+	return `<!DOCTYPE html>
+			<html>
+			  <head>
+			  <meta charset="utf-8">
+			  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+			  <meta name="viewport" content="width=device-width, initial-scale=1">
+			  <title>` + title + ` - Quan Nguyen</title>
+			  <link rel="stylesheet" href="/assets/styte.css">
+			  <link rel="stylesheet" href="assets/styte.css">
+			  <link rel="alternate" type="application/rss+xml" title="TextLog" href="/rss.xml">
+			</head>
+			<body>
+				<div class="page-content">
+				  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+					<header class="post-header">
+						` + getNav() + `
+						<h1 class="post-title" itemprop="name headline">` + title + `</h1>
+						<p class="post-meta">
+				  			<time datetime="2017-01-15T00:00:00+00:00" itemprop="datePublished">` + date + `</time>
+						</p>
+			  		</header>
+			  		<div class="post-content" itemprop="articleBody">`
 }
+
 func getFile(f string) []byte {
 	b, err := ioutil.ReadFile(f)
 
@@ -435,9 +130,15 @@ func getSiteTitle() string {
 func getPostMeta(fi os.FileInfo) (string, string, string) {
 	id := fi.Name()[:len(fi.Name())-3]
 	date := fi.Name()[0:10]
-	title := strings.Split(string(getFile("_posts/"+fi.Name())), "\n")[0][2:]
-
+	title := strings.Split(string(getFile("_posts/"+fi.Name())), "\n")[0]
+	title = strings.ReplaceAll(title, "[comment]: <> (", "")
+	title = strings.ReplaceAll(title, ")", "")
 	return id, date, title
+}
+
+func convertDate(date string) string {
+	myDate, _ := time.Parse("2006-01-02", date)
+	return fmt.Sprintf("%s", myDate.Format("January 02, 2006"))
 }
 
 func getAboutMeta(fi os.FileInfo) (string, string) {
@@ -449,50 +150,28 @@ func getAboutMeta(fi os.FileInfo) (string, string) {
 
 func writeIndex() {
 	var b bytes.Buffer
-	b.WriteString(getLayoutStart(quannguyen))
-	b.Write(blackfriday.MarkdownCommon(getFile("_sections/header.md")))
+	b.WriteString(getLayoutStart(true))
 	writePostsSection(&b)
 	b.WriteString(getLayoutEnd())
 	writeFile("index", b)
 }
 
 func writePostsSection(b *bytes.Buffer) {
-	b.WriteString("<nav class=\"posts\"><ul>")
+	b.WriteString(`<section>
+							<ul class="post-list">`)
 
 	posts := getDir("_posts")
-	var years []string
-loop:
 	for i := len(posts) - 1; i >= 0; i-- {
-		_, date, _ := getPostMeta(posts[i])
-		y := strings.Split(date, "-")[0]
-		for _, year := range years {
-			if year == y {
-				continue loop
-			}
-		}
-		years = append(years, y)
+		_, date, title := getPostMeta(posts[i])
+		dateFolder := strings.ReplaceAll(date, "-", "/")
+		path := "/posts/" + dateFolder + "/" + strings.ReplaceAll(title, " ", "-")
+
+		b.WriteString("<li><a class=\"post-link\" href=\"" + path + "\">" + title + "</a> <time datetime=\"2017-01-15T00:00:00+00:00\">" + convertDate(date) + "</time></li>\n")
 	}
-	fmt.Println(years)
-	// limit := int(math.Max(float64(len(posts))-5, 0))
-	for _, year := range years {
-		b.WriteString("<h1 class=\"year\">" + year + "</h1>")
-		for i := len(posts) - 1; i >= 0; i-- {
-			_, date, title := getPostMeta(posts[i])
-
-			y := strings.Split(date, "-")[0]
-
-			if y != year {
-				continue
-			}
-
-			dateFolder := strings.ReplaceAll(date, "-", "/")
-			path := "/posts/" + dateFolder + "/" + strings.ReplaceAll(title, " ", "-")
-
-			b.WriteString("<li><a class=\"post-link\" href=\"" + path + "\">" + title + "</a><span class=\"date\">" + date + "</span></li>\n")
-		}
-	}
-
-	// b.WriteString("</ul></nav><p class=\"all-posts\"><a href=\"all-posts.html\">All posts</a></p>")
+	b.WriteString(`
+					</div>
+				</ul>
+		</section>`)
 }
 
 func writePosts() {
@@ -500,13 +179,9 @@ func writePosts() {
 
 	for i := 0; i < len(posts); i++ {
 		_, date, title := getPostMeta(posts[i])
-
 		var b bytes.Buffer
-		b.WriteString(getLayoutStart(title + " – " + quannguyen))
-		// b.WriteString("<p><a href=\"../index.html\">←</a></p>")
-		b.WriteString("<p class=\"date\">" + date + "</p>")
+		b.WriteString(getPostPage(title, convertDate(date)))
 		b.Write(blackfriday.MarkdownCommon(getFile("_posts/" + posts[i].Name())))
-		// b.WriteString("<p><a href=\"../index.html\">←</a></p>")
 		b.WriteString(getLayoutEnd())
 
 		dateFolder := strings.ReplaceAll(date, "-", "/")
@@ -526,7 +201,7 @@ func writePostsPage() {
 	posts := getDir("_posts")
 	var b bytes.Buffer
 
-	b.WriteString(getLayoutStart("All posts – " + quannguyen))
+	b.WriteString(getLayoutStart(false))
 	b.WriteString("<h1>All posts</h1>\n")
 	b.WriteString("<nav class=\"posts\"><ul>\n")
 
@@ -536,7 +211,7 @@ func writePostsPage() {
 		dateFolder := strings.ReplaceAll(date, "-", "/")
 		path := "/posts/" + dateFolder + "/" + strings.ReplaceAll(title, " ", "-")
 
-		b.WriteString("<li><a class=\"post-link\" href=\"" + path + "\">" + title + "</a><span class=\"date\">" + date + "</span></li>\n")
+		b.WriteString("<li><a class=\"post-link\" href=\"" + path + "\">" + title + "</a><span class=\"date\">" + convertDate(date) + "</span></li>\n")
 	}
 
 	b.WriteString(getLayoutEnd())
@@ -551,7 +226,7 @@ func writeRSS() {
 	b.WriteString("<channel>\n")
 	b.WriteString("<title>Nauk17</title>\n")
 	b.WriteString("<description>For the Future</description>\n")
-	b.WriteString("<link>https://nauk17.github.io/</link>\n")
+	b.WriteString("<link>https://puerrtigris.github.io/</link>\n")
 	for i := len(posts) - 1; i >= 0; i-- {
 		_, date, title := getPostMeta(posts[i])
 
@@ -572,11 +247,13 @@ func writeAbout() {
 	pages := getDir("_about")
 
 	for i := 0; i < len(pages); i++ {
-		_, title := getAboutMeta(pages[i])
+		_, _ = getAboutMeta(pages[i])
 
 		var b bytes.Buffer
-		b.WriteString(getLayoutStart(title + " – " + quannguyen))
+		b.WriteString(getLayoutStart(false))
+		b.WriteString(`<section>`)
 		b.Write(blackfriday.MarkdownCommon(getFile("_about/" + pages[i].Name())))
+		b.WriteString(`</section>`)
 		b.WriteString(getLayoutEnd())
 
 		writeFile("about/index", b)
@@ -603,4 +280,585 @@ func main() {
 	writePostsPage()
 	writeAbout()
 	writeRSS()
+}
+
+func getCSS() string {
+	return `
+	blockquote, body, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, ol, p, pre, ul {
+		margin: 0;
+		padding: 0
+	}
+	
+	body {
+		font: 300 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    	font-family: "Overpass Mono", monospace;		
+		color: #333;
+		background-color: #fff
+	}
+	
+	blockquote, dl, figure, h1, h2, h3, h4, h5, h6, ol, p, pre, table, ul {
+		margin-bottom: 1rem
+	}
+	
+	img {
+		max-width: 100%;
+		vertical-align: middle
+	}
+	
+	figure > img {
+		display: block
+	}
+	
+	figcaption {
+		font-size: .875rem
+	}
+	
+	ol, ul {
+		margin-left: 2rem
+	}
+	
+	li > ol, li > ul {
+		margin-bottom: 0
+	}
+	
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: 300
+	}
+	
+	a {
+		color: #0645ad;
+		text-decoration: none
+	}
+	
+	a:hover {
+		text-decoration: underline
+	}
+	
+	blockquote {
+		color: #6a6a6a;
+		padding-left: 1rem;
+		border-left: 2px solid #eaeaea;
+		font-style: italic;
+		font-size: .875rem
+	}
+	
+	blockquote > :last-child {
+		margin-bottom: 0
+	}
+	
+	code, pre {
+		background-color: #fcfcfc
+	}
+	
+	code {
+		padding: 1px 5px;
+		font-family: Inconsolata, Monaco, Consolas, monospace;
+		color: #f14e32
+	}
+	
+	pre {
+		padding: 8px 12px;
+		overflow-x: auto;
+		border: 1px solid #eaeaea
+	}
+	
+	pre > code {
+		border: 0;
+		padding-right: 0;
+		padding-left: 0;
+		tab-size: 4;
+		color: inherit
+	}
+	
+	table {
+		width: 100%;
+		max-width: 100%;
+		border-collapse: separate;
+		border-spacing: 0;
+		table-layout: fixed
+	}
+	
+	td, th {
+		padding: 0.5rem;
+		line-height: inherit
+	}
+	
+	th {
+		text-align: left;
+		vertical-align: bottom;
+		border-bottom: 2px solid #eaeaea
+	}
+	
+	td {
+		vertical-align: top;
+		border-bottom: 1px solid #eaeaea
+	}
+	
+	hr {
+		border: none;
+		border-top: 1px solid #f7f7f7;
+		margin: 2rem auto
+	}
+	
+	.underlined {
+		flex: 1;
+		text-decoration: none;
+		background-image: linear-gradient(to right, #ff0 0, #ff0 100%);
+		background-position: 0 1.2em;
+		background-size: 0 100%;
+		background-repeat: no-repeat;
+		transition: background .5s
+	}
+	
+	.underlined:hover {
+		background-size: 100% 100%
+	}
+	
+	.underlined--thin {
+		background-image: linear-gradient(to right, #000 0, #000 100%)
+	}
+	
+	.underlined--thick {
+		background-position: 0 -0.1em
+	}
+	
+	.underlined--offset {
+		background-position: 0 0.2em;
+		box-shadow: inset 0 -.5em 0 0 white
+	}
+	
+	.underlined--gradient {
+		background-position: 0 -0.1em;
+		background-image: linear-gradient(to right, #ff0 0, #90ee90 100%)
+	}
+	
+	.underlined--reverse {
+		background-position: 100% -0.1em;
+		transition: background 1s;
+		background-image: linear-gradient(to right, #ff0 0, #ff0 100%)
+	}
+	
+	.site-header {
+		border-bottom: 1px solid #eaeaea;
+		margin-top: -2rem;
+		max-width: 48rem
+	}
+	
+	.site-header p {
+		font-size: .875rem
+	}
+	
+	.site-header .site-intro {
+		font-size: 1.0rem
+	}
+	
+	.smallcap {
+		font-size: 1.5rem;
+		font-weight: bold
+	}
+	
+	.smallcap a, .smallcap a:hover {
+		text-decoration: none;
+		letter-spacing: 2px;
+		background-color: #333;
+		color: #eee;
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+		padding-top: 0.2rem;
+		padding-bottom: 0.2rem
+	}
+	
+	.page-content {
+		position: relative;
+		padding: 2rem 1.5rem;
+		margin: 1rem auto;
+		box-sizing: border-box;
+		max-width: 48rem
+	}
+	
+	.home section + section {
+		margin-top: 2rem;
+		max-width: 48rem
+	}
+	
+	.post-list > li {
+		margin-bottom: .5rem;
+		list-style-type: none;
+		margin-left: -2rem
+	}
+	
+	.post-list > li a {
+		color: #333;
+		text-decoration: none;
+		font-weight: normal
+	}
+	
+	.post-list > li a:hover {
+		color: #0645ad;
+		text-decoration: underline
+	}
+	
+	.post-list > li time {
+		font-size: .875rem;
+		color: #aaa;
+		display: inline-block
+	}
+	
+	@media screen and (max-width: 600px) {
+		.post-list > li time {
+			display: block;
+			font-size: .875rem
+		}
+	}
+	
+	.tag-title {
+		color: #0645ad
+	}
+	
+	.post-header {
+		margin-bottom: 2rem
+	}
+	
+	.post-title {
+		font-size: 2rem;
+		letter-spacing: -1px;
+		line-height: 1.2;
+		margin-bottom: 0.5rem;
+		font-weight: bold
+	}
+	
+	.post-meta {
+		font-size: .875rem;
+		font-family: Inconsolata, Monaco, Consolas, monospace;
+		color: #aaa
+	}
+	
+	.post-meta a, .post-meta a:visited {
+		color: #6a6a6a
+	}
+	
+	.post-meta .tags a, .post-meta .tags a:visited {
+		background: #eaeaea;
+		padding: 0.1rem 0.5rem
+	}
+	
+	.post-content {
+		margin-bottom: 2rem;
+		font-weight: normal
+	}
+	
+	.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
+		margin-top: 2rem;
+		font-weight: normal
+	}
+	
+	.post-content h1, .post-content h2 {
+		font-size: 2rem
+	}
+	
+	.post-content h3 {
+		font-size: 1.5rem
+	}
+	
+	.post-content h4 {
+		font-size: 1.25rem
+	}
+	
+	.post-content h5, .post-content h6 {
+		font-size: 1rem
+	}
+	
+	.copyright {
+		margin-top: 2rem;
+		font-size: .875rem;
+		font-family: Inconsolata, Monaco, Consolas, monospace
+	}
+	
+	.copyright p {
+		color: #aaa
+	}
+	
+	.copyright p a, .copyright p a:visited {
+		color: #6a6a6a
+	}
+	
+	.highlight {
+		background-color: #fcfcfc;
+		color: #586e75
+	}
+	
+	.highlight .c {
+		color: #93a1a1
+	}
+	
+	.highlight .err {
+		color: #586e75
+	}
+	
+	.highlight .g {
+		color: #586e75
+	}
+	
+	.highlight .k {
+		color: #859900
+	}
+	
+	.highlight .l {
+		color: #586e75
+	}
+	
+	.highlight .n {
+		color: #586e75
+	}
+	
+	.highlight .o {
+		color: #859900
+	}
+	
+	.highlight .x {
+		color: #cb4b16
+	}
+	
+	.highlight .p {
+		color: #586e75
+	}
+	
+	.highlight .cm {
+		color: #93a1a1
+	}
+	
+	.highlight .cp {
+		color: #859900
+	}
+	
+	.highlight .c1 {
+		color: #93a1a1
+	}
+	
+	.highlight .cs {
+		color: #859900
+	}
+	
+	.highlight .gd {
+		color: #2aa198
+	}
+	
+	.highlight .ge {
+		color: #586e75;
+		font-style: italic
+	}
+	
+	.highlight .gr {
+		color: #dc322f
+	}
+	
+	.highlight .gh {
+		color: #cb4b16
+	}
+	
+	.highlight .gi {
+		color: #859900
+	}
+	
+	.highlight .go {
+		color: #586e75
+	}
+	
+	.highlight .gp {
+		color: #586e75
+	}
+	
+	.highlight .gs {
+		color: #586e75;
+		font-weight: bold
+	}
+	
+	.highlight .gu {
+		color: #cb4b16
+	}
+	
+	.highlight .gt {
+		color: #586e75
+	}
+	
+	.highlight .kc {
+		color: #cb4b16
+	}
+	
+	.highlight .kd {
+		color: #268bd2
+	}
+	
+	.highlight .kn {
+		color: #859900
+	}
+	
+	.highlight .kp {
+		color: #859900
+	}
+	
+	.highlight .kr {
+		color: #268bd2
+	}
+	
+	.highlight .kt {
+		color: #dc322f
+	}
+	
+	.highlight .ld {
+		color: #586e75
+	}
+	
+	.highlight .m {
+		color: #2aa198
+	}
+	
+	.highlight .s {
+		color: #2aa198
+	}
+	
+	.highlight .na {
+		color: #586e75
+	}
+	
+	.highlight .nb {
+		color: #B58900
+	}
+	
+	.highlight .nc {
+		color: #268bd2
+	}
+	
+	.highlight .no {
+		color: #cb4b16
+	}
+	
+	.highlight .nd {
+		color: #268bd2
+	}
+	
+	.highlight .ni {
+		color: #cb4b16
+	}
+	
+	.highlight .ne {
+		color: #cb4b16
+	}
+	
+	.highlight .nf {
+		color: #268bd2
+	}
+	
+	.highlight .nl {
+		color: #586e75
+	}
+	
+	.highlight .nn {
+		color: #586e75
+	}
+	
+	.highlight .nx {
+		color: #586e75
+	}
+	
+	.highlight .py {
+		color: #586e75
+	}
+	
+	.highlight .nt {
+		color: #268bd2
+	}
+	
+	.highlight .nv {
+		color: #268bd2
+	}
+	
+	.highlight .ow {
+		color: #859900
+	}
+	
+	.highlight .w {
+		color: #586e75
+	}
+	
+	.highlight .mf {
+		color: #2aa198
+	}
+	
+	.highlight .mh {
+		color: #2aa198
+	}
+	
+	.highlight .mi {
+		color: #2aa198
+	}
+	
+	.highlight .mo {
+		color: #2aa198
+	}
+	
+	.highlight .sb {
+		color: #93a1a1
+	}
+	
+	.highlight .sc {
+		color: #2aa198
+	}
+	
+	.highlight .sd {
+		color: #586e75
+	}
+	
+	.highlight .s2 {
+		color: #2aa198
+	}
+	
+	.highlight .se {
+		color: #cb4b16
+	}
+	
+	.highlight .sh {
+		color: #586e75
+	}
+	
+	.highlight .si {
+		color: #2aa198
+	}
+	
+	.highlight .sx {
+		color: #2aa198
+	}
+	
+	.highlight .sr {
+		color: #dc322f
+	}
+	
+	.highlight .s1 {
+		color: #2aa198
+	}
+	
+	.highlight .ss {
+		color: #2aa198
+	}
+	
+	.highlight .bp {
+		color: #268bd2
+	}
+	
+	.highlight .vc {
+		color: #268bd2
+	}
+	
+	.highlight .vg {
+		color: #268bd2
+	}
+	
+	.highlight .vi {
+		color: #268bd2
+	}
+	
+	.highlight .il {
+		color: #2aa198
+	}
+	`
 }
