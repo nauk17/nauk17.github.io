@@ -25,7 +25,7 @@ func getLayoutStart(isIntro bool) string {
 			  <title>QUAN NGUYEN</title>
 			  <link rel="stylesheet" href="/assets/styte.css">
     		  <link rel="stylesheet" href="assets/styte.css">
-			  <link rel="alternate" type="application/rss+xml" title="puertigris" href="rss.xml">
+			  <link rel="alternate" type="application/rss+xml" title="puertigris" href="/rss.xml">
 			</head>
 			
 			  <body>
@@ -40,7 +40,7 @@ func getLayoutStart(isIntro bool) string {
 }
 
 func getNav() string {
-	return `<p class="site-nav"><a href="/">Home</a> / <a href="/about">About</a> / <a href="/rss.xml">RSS</a></p>`
+	return `<p class="site-nav"><a href="/">Home</a> / <a href="/about">About</a> / <a href="/game/tic-tac-toe">Game</a> / <a href="/rss.xml">RSS</a></p>`
 }
 
 func getLayoutEnd() string {
