@@ -164,7 +164,7 @@
 	}
 	
 	.site-header .site-intro {
-		font-size: 1.0rem
+		font-size: 0.9rem
 	}
 	
 	.smallcap {
@@ -195,10 +195,13 @@
 		margin-top: 2rem;
 		max-width: 48rem
 	}
+
+	.post-list {
+		margin-left: 4em;
+	}
 	
 	.post-list > li {
 		margin-bottom: .5rem;
-		list-style-type: none;
 		margin-left: -2rem
 	}
 	

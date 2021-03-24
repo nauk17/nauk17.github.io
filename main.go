@@ -14,7 +14,22 @@ import (
 func getLayoutStart(isIntro bool) string {
 	intro := ""
 	if isIntro {
-		intro = `<p class="site-intro">Hello, it's Puertigris</p>`
+		intro = `<p class="site-intro">Hi there, it's me and I ship code for a coffee. Find me on:</p>
+				<ul style="list-style-type: none;">
+					<li>
+						<i class="fa fa-github fa-1x" aria-hidden="true"></i>
+						<a href="https://github.com/puertigris">GitHub</a>
+					</li>
+					<li>
+						<i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+                    	<a href="https://twitter.com/quannv132">Twitter</a>
+					</li>
+					<li>
+						<i class="fa fa-rss fa-1x" aria-hidden="true"></i>
+                    	<a href="/rss">RSS</a>
+					</li>
+            	</ul>
+				`
 	}
 	return `<!DOCTYPE html>
 			<html>
@@ -26,6 +41,7 @@ func getLayoutStart(isIntro bool) string {
 			  <link rel="stylesheet" href="/assets/styte.css">
     		  <link rel="stylesheet" href="assets/styte.css">
 			  <link rel="alternate" type="application/rss+xml" title="puertigris" href="/rss.xml">
+			  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 			</head>
 			
 			  <body>
@@ -40,13 +56,13 @@ func getLayoutStart(isIntro bool) string {
 }
 
 func getNav() string {
-	return `<p class="site-nav"><a href="/">Home</a> / <a href="/about">About</a> / <a href="/game/tic-tac-toe">Game</a> / <a href="/rss.xml">RSS</a></p>`
+	return `<p class="site-nav"><a href="/">Home</a> / <a href="/about">About</a> / <a href="/game/tic-tac-toe">Game</a></p>`
 }
 
 func getLayoutEnd() string {
 	return `
 			<div class="copyright">
-        <p>&copy; 2021 <a href="/"><strong>PuerTigris</strong></a></p>
+        <p>&copy; 2021 <a href="/"><strong>QUAN NGUYEN</strong></a></p>
       </div>
     </div>
     
@@ -234,7 +250,7 @@ func writeRSS() {
 		path := "posts/" + dateFolder + "/" + strings.ReplaceAll(title, " ", "-")
 		b.WriteString("<item>\n")
 		b.WriteString("<title>" + title + "</title>\n")
-		b.WriteString("<link>https://nauk17.github.io/" + path + "</link>\n")
+		b.WriteString("<link>https://puerrtigris.github.io/" + path + "</link>\n")
 		b.WriteString("</item>\n")
 	}
 	b.WriteString("</channel>\n")
@@ -449,7 +465,7 @@ func getCSS() string {
 	}
 	
 	.site-header .site-intro {
-		font-size: 1.0rem
+		font-size: 0.9rem
 	}
 	
 	.smallcap {
@@ -480,10 +496,13 @@ func getCSS() string {
 		margin-top: 2rem;
 		max-width: 48rem
 	}
+
+	.post-list {
+		margin-left: 4em;
+	}
 	
 	.post-list > li {
 		margin-bottom: .5rem;
-		list-style-type: none;
 		margin-left: -2rem
 	}
 	

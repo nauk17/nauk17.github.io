@@ -1,10 +1,8 @@
 [comment]: <> (# About)
 
-<img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px"> Hi, My name is Quan, an innocent developer from Vietnam and a fulltime software engineer at [One Mount Group](#).
+<img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px"> Hi, My name is Quan, a software engineer from Vietnam and a poet.
 
-I have a thirst for knowledge. I strongly believe that knowledge will make us become better humans.
+I have a thirst for knowledge, and I strongly believe that knowledge will make us become better humans.
 
-My qoute:
-
-> Life is not fair to anyone, it's only fair to talented people and smiles.
+> Life is not fair to anyone, it's only fair to talent and smiles.
 
