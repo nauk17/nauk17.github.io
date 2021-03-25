@@ -14,7 +14,7 @@ import (
 func getLayoutStart(isIntro bool) string {
 	intro := ""
 	if isIntro {
-		intro = `<p class="site-intro">Hi there, it's me and I ship code for a coffee. Find me on:</p>
+		intro = `<p class="site-intro">Hi there, it's me and I ship code for a cup of coffee. Find me on:</p>
 				<ul style="list-style-type: none;">
 					<li>
 						<i class="fa fa-github fa-1x" aria-hidden="true"></i>
