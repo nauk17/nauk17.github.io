@@ -1,4 +1,4 @@
-[comment]: <> (Kafka Concepts)
+[comment]: <> (Knowledge about Apache Kafka)
 
 ## Kafka là gì?
 Kafka là `event-streaming` platform (distributed message platform),

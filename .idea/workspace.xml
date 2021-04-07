@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b367690-5708-4428-a1fe-57fa13622c39" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2021-01-21-kafka-concept.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2021-01-21-kafka-concept.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2021-03-25-performace-testing.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2021-03-25-performace-testing.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/about/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styte.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styte.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/2020/10/14/Hello-World/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/posts/2020/10/14/Hello-World/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/2020/10/15/The-choices-about-my-career/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/posts/2020/10/15/The-choices-about-my-career/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/2021/01/21/Kafka-Concepts/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/2021/03/25/Performance-test/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rss.xml" beforeDir="false" afterPath="$PROJECT_DIR$/rss.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +27,7 @@
       <list>
         <option value="Go File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -53,14 +66,14 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/images/2021-01-21-kafka-concept" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/_posts" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/_posts" />
       <recent name="$PROJECT_DIR$/images/2021-01-21-kafka-concept" />
       <recent name="$PROJECT_DIR$/images" />
-      <recent name="$PROJECT_DIR$/_posts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets" />

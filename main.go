@@ -32,14 +32,13 @@ func getLayoutStart(isIntro bool) string {
 				`
 	}
 	return `<!DOCTYPE html>
-			<html>
+			<html lang="en">
 			  <head>
 			  <meta charset="utf-8">
 			  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 			  <meta name="viewport" content="width=device-width, initial-scale=1">
 			  <title>QUAN NGUYEN</title>
 			  <link rel="stylesheet" href="/assets/styte.css">
-    		  <link rel="stylesheet" href="assets/styte.css">
 			  <link rel="alternate" type="application/rss+xml" title="puertigris" href="/rss.xml">
 			  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 			</head>
@@ -56,7 +55,7 @@ func getLayoutStart(isIntro bool) string {
 }
 
 func getNav() string {
-	return `<p class="site-nav"><a href="/">Home</a> / <a href="/about">About</a> / <a href="/game/tic-tac-toe">Game</a></p>`
+	return `<p class="site-nav"><a href="/">cd~</a> / <a href="/about">about</a> / <a href="/game/tic-tac-toe">game</a></p>`
 }
 
 func getLayoutEnd() string {
@@ -65,21 +64,34 @@ func getLayoutEnd() string {
         <p>&copy; 2021 <a href="/"><strong>QUAN NGUYEN</strong></a></p>
       </div>
     </div>
-    
-  </body>
+</div>
+<script src="/assets/prettify.js"></script>
+</body>
+</html>`
+}
+
+func getPostEnd() string {
+	return `
+			<div class="copyright">
+        <p>&copy; 2021 <a href="/"><strong>QUAN NGUYEN</strong></a></p>
+      </div>
+    </div>
+ </article>
+</div>
+<script src="/assets/prettify.js"></script>
+</body>
 </html>`
 }
 
 func getPostPage(title string, date string) string {
 	return `<!DOCTYPE html>
-			<html>
+			<html lang="en">
 			  <head>
 			  <meta charset="utf-8">
 			  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 			  <meta name="viewport" content="width=device-width, initial-scale=1">
 			  <title>` + title + ` - Quan Nguyen</title>
 			  <link rel="stylesheet" href="/assets/styte.css">
-			  <link rel="stylesheet" href="assets/styte.css">
 			  <link rel="alternate" type="application/rss+xml" title="TextLog" href="/rss.xml">
 			</head>
 			<body>
@@ -185,7 +197,6 @@ func writePostsSection(b *bytes.Buffer) {
 		b.WriteString("<li><a class=\"post-link\" href=\"" + path + "\">" + title + "</a> <time datetime=\"2017-01-15T00:00:00+00:00\">" + convertDate(date) + "</time></li>\n")
 	}
 	b.WriteString(`
-					</div>
 				</ul>
 		</section>`)
 }
@@ -198,7 +209,7 @@ func writePosts() {
 		var b bytes.Buffer
 		b.WriteString(getPostPage(title, convertDate(date)))
 		b.Write(blackfriday.MarkdownCommon(getFile("_posts/" + posts[i].Name())))
-		b.WriteString(getLayoutEnd())
+		b.WriteString(getPostEnd())
 
 		dateFolder := strings.ReplaceAll(date, "-", "/")
 		dir := "posts/" + dateFolder + "/" + strings.ReplaceAll(title, " ", "-")
@@ -277,6 +288,8 @@ func writeAbout() {
 }
 
 func createFilesAndDirs() {
+	os.RemoveAll("posts")
+
 	os.MkdirAll("_sections", 0755)
 	os.MkdirAll("_posts", 0755)
 	os.MkdirAll("_about", 0755)

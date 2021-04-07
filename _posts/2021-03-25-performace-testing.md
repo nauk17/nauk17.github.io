@@ -1,4 +1,4 @@
-[comment]: <> (Performance test)
+[comment]: <> (Synthesis of Performance Test concepts)
 
 > Tông hợp kiến thức về Performance test.
 
