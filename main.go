@@ -313,7 +313,7 @@ func getCSS() string {
 	}
 	
 	blockquote, dl, figure, h1, h2, h3, h4, h5, h6, ol, p, pre, table, ul {
-		margin-bottom: 1rem
+		margin-bottom: 0.2rem
 	}
 	
 	img {
@@ -567,7 +567,7 @@ func getCSS() string {
 	}
 	
 	.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
-		margin-top: 2rem;
+		margin-top: 0.3rem;
 		font-weight: normal
 	}
 	
