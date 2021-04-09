@@ -6,10 +6,10 @@
 
 As a programmer, I really like to creating automated programs and plenty there, it looks magic.
 
-So, in the past, I worked with Tekoda team (not Tokuda :D), and we built an application called ``Àừnhỏ.com``. The application 
+Not long ago, I worked with Tekoda team (not Tokuda :D), to build an application called ``Àừnhỏ.com``. The application 
 name sounded like ``"Holy sh!t, I finally found it"`` with your surprised face.
 
-When I built app with backend scope, I have finished coding for any task, and performed the step below to deploy my code on docker hub.
+I built backend app and whenever I finished coding for any task, and all had to perform the step below to deploy my code on docker hub.
 
 1. Docker build with ``docker build -t IMAGE_NAME:IMAGE_TAG .``
    
@@ -17,9 +17,9 @@ When I built app with backend scope, I have finished coding for any task, and pe
 
 3. Finally, push my image on my docker hub using ``docker push``
 
-Not to mention, I have to push my all code on the Github with ``add``, ``commit`` and ``push``, it's really boring.
+Not to mention, I had to push my all code on the Github with ``add``, ``commit`` and ``push``, it's really boring.
 
-So I look to CICD as a savior for my problem.
+So, I look to CICD as a savior for my problem as a clever way from now.
 
 ### Build a magic
 
