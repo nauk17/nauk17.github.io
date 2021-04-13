@@ -583,7 +583,8 @@ func getCSS() string {
 	
 	.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
 		margin-top: 0.3rem;
-		font-weight: normal
+		font-weight: normal;
+		font-weight: bold;
 	}
 	
 	.post-content h1, .post-content h2 {
