@@ -6,6 +6,7 @@
 			  <meta name="viewport" content="width=device-width, initial-scale=1">
 			  <title>Deploy code using CICD - Quan Nguyen</title>
 			  <link rel="stylesheet" href="/assets/styte.css">
+              <link rel="stylesheet" href="/assets/prism.css">
 			  <link rel="alternate" type="application/rss+xml" title="TextLog" href="/rss.xml">
 			</head>
 			<body>
@@ -26,7 +27,7 @@
 
 <p>As a programmer, I really like to creating automated programs and plenty there, it looks magic.</p>
 
-<p>Not long ago, I worked with Tekoda team (not Tokuda :D) to build an application called <code>Àừnhỏ.com</code>. The application
+<p>Not long ago, I worked with Tekoda team (not Tokuda :D), to build an application called <code>Àừnhỏ.com</code>. The application
 name sounded like <code>&quot;Holy sh!t, I finally found it&quot;</code> with your surprised face.</p>
 
 <p>I built backend app and whenever I finished coding for any task, and all had to perform the step below to deploy my code on docker hub.</p>
@@ -42,7 +43,6 @@ name sounded like <code>&quot;Holy sh!t, I finally found it&quot;</code> with yo
 <p>Not to mention, I had to push my all code on the Github with <code>add</code>, <code>commit</code> and <code>push</code>, it&rsquo;s really boring.</p>
 
 <p>So, I look to CICD as a savior for my problem as a clever way from now.</p>
-						
 
 <h3>Build a magic</h3>
 
@@ -60,7 +60,6 @@ func main() {
 	fmt.Println(&quot;Lookup on the moon&quot;)
 }
 </code></pre>
-						
 
 <p>It&rsquo;s very simple, isn&rsquo;t it? Of course, it&rsquo;s really powerful.</p>
 
@@ -92,10 +91,8 @@ EXPOSE 8080
 
 CMD [&quot;./main&quot;]
 </code></pre>
-						
 
 <p>See, I have 2 doses of sedatives. Let&rsquo;s make runner.</p>
-						
 
 <h4>Gitlab</h4>
 
@@ -131,10 +128,8 @@ docker build:
     - docker build -t $CONTAINER_IMAGE .
     - docker push $CONTAINER_IMAGE
 </code></pre>
-						
 
 <p>All variables with the prefix <code>$</code> is defined on Gitlab -&gt; Settings -&gt; CI/CD -&gt; Variables</p>
-						
 
 <h4>Github</h4>
 
@@ -186,6 +181,6 @@ jobs:
     </div>
  </article>
 </div>
-<script src="/assets/prettify.js"></script>
+<script src="/assets/prism.js"></script>
 </body>
 </html>

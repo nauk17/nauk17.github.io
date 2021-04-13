@@ -39,6 +39,7 @@ func getLayoutStart(isIntro bool) string {
 			  <meta name="viewport" content="width=device-width, initial-scale=1">
 			  <title>QUAN NGUYEN</title>
 			  <link rel="stylesheet" href="/assets/styte.css">
+			  <link rel="stylesheet" href="/assets/prism.css">
 			  <link rel="alternate" type="application/rss+xml" title="puertigris" href="/rss.xml">
 			  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 			</head>
@@ -65,7 +66,7 @@ func getLayoutEnd() string {
       </div>
     </div>
 </div>
-<script src="/assets/prettify.js"></script>
+<script src="/assets/prism.js"></script>
 </body>
 </html>`
 }
@@ -78,7 +79,7 @@ func getPostEnd() string {
     </div>
  </article>
 </div>
-<script src="/assets/prettify.js"></script>
+<script src="/assets/prism.js"></script>
 </body>
 </html>`
 }
@@ -92,6 +93,7 @@ func getPostPage(title string, date string) string {
 			  <meta name="viewport" content="width=device-width, initial-scale=1">
 			  <title>` + title + ` - Quan Nguyen</title>
 			  <link rel="stylesheet" href="/assets/styte.css">
+              <link rel="stylesheet" href="/assets/prism.css">
 			  <link rel="alternate" type="application/rss+xml" title="TextLog" href="/rss.xml">
 			</head>
 			<body>
