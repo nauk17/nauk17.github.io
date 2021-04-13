@@ -1,10 +1,10 @@
 [comment]: <> (Deploy code using CICD)
 
-> Automatic will help us leisurely
+> Automatic will help us more leisurely
 
 ### Rambling a little
 
-As a programmer, I really like to creating automated programs and plenty there, it looks magic.
+As a programmer, I really like creating automated programs and plenty there, it looks magic.
 
 Not long ago, I worked with Tekoda team (not Tokuda :D), to build an application called ``Àừnhỏ.com``. The application 
 name sounded like ``"Holy sh!t, I finally found it"`` with your surprised face.
