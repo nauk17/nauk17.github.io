@@ -5,6 +5,10 @@
 <description>For the Future</description>
 <link>https://puerrtigris.github.io/</link>
 <item>
+<title>Optimization with Bitmask</title>
+<link>https://puerrtigris.github.io/posts/2021/05/22/Optimization-with-Bitmask</link>
+</item>
+<item>
 <title>Deploy code using CICD</title>
 <link>https://puerrtigris.github.io/posts/2021/04/08/Deploy-code-using-CICD</link>
 </item>
