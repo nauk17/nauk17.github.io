@@ -22,8 +22,8 @@
 			  		<div class="post-content" itemprop="articleBody"><h3>Introduction</h3>
 
 <p>In my work, I have participated in backend development for Identity Service(IDS) Application
-through our users can register our services for their purposes like OCR, Face Matching,&hellip;
-So I want to design how to store the set of services each user register.</p>
+through which users can register our services for their purposes like OCR, Face Matching,&hellip;
+So I want to design how to store the set of services each user registers.</p>
 
 <p>For simple, imagine the set of service keys are OCR, FM, LC, SCI. The usual way is to use a string array (<code>[]string</code>),
 or a map whose key is string and bool is value (<code>map[string]bool</code>)</p>
@@ -43,17 +43,17 @@ base 10 |128| 64| 32| 16| 8 | 4 | 2 | 1 |
 
 <p>For example, to represent 14, I set bit positions for the numbers 8, 4, 2</p>
 
-<pre><code>bit     | 0 | 0 | 0 | 0 | 1 | 1 | 0 | 0 |
+<pre><code>bit     | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 0 |
 base 10 |128| 64| 32| 16| 8 | 4 | 2 | 1 |
           0 + 0 + 0 + 0 + 8 + 4 + 2 + 0 = 14
 </code></pre>
 
-<p>Notice that, this encoding schema means maximal number that can be represented by a byte is <code>255</code>,
-it means all bit positions will be fill by 1, and the sum of all base 10.</p>
+<p>Notice that, this encoding schema means the maximal number that can be represented by a byte is <code>255</code>,
+it means all bit positions will be filled by 1, and the sum of all base 10.</p>
 
 <h3>Logical operations</h3>
 
-<p>One of the things that makes magic in the world is <code>Logical operations on bits</code> are <code>AND</code>, <code>OR</code>, <code>NOT</code>, <code>SHIFF LEFT</code>,&hellip;</p>
+<p>One of the things that makes magic in the world is <code>Logical operations on bits</code> are <code>AND</code>, <code>OR</code>, <code>NOT</code>, <code>SHIFT LEFT</code>,&hellip;</p>
 
 <p>Let&rsquo;s perform some:</p>
 
@@ -74,7 +74,7 @@ it means all bit positions will be fill by 1, and the sum of all base 10.</p>
 so <code>SHIFT LEFT</code> by 2 will be <code>2²</code>. Therefore, <code>A &lt;&lt; n = A * (2^n)</code></p>
 
 <p>Similar to <code>SHIFT LEFT</code>, <code>SHIFT RIGHT(&gt;&gt;)</code> will shift all the bits one position to the right, if shift right by
-<code>n</code> will be divided a number by <code>2^n</code>. Therefore, <code>A &gt;&gt; n = A / (2^n)</code></p>
+<code>n</code> will be divided by <code>2^n</code>. Therefore, <code>A &gt;&gt; n = A / (2^n)</code></p>
 
 <pre><code>00000110 (6) &gt;&gt; 1
 00000011 (3) 
@@ -118,7 +118,7 @@ so <code>SHIFT LEFT</code> by 2 will be <code>2²</code>. Therefore, <code>A &lt
 )
 </code></pre>
 
-<p>Above, my implementation will perform service as a number, in order to understand easily, I will represent my service keys by nice string.</p>
+<p>Above, my implementation will perform service as a number, in order to understand easily, I will represent my service keys by nice strings.</p>
 
 <pre><code class="language-go">func (s ServiceKeySet) String() string {
 	if s &gt;= UnknownService {
@@ -154,7 +154,7 @@ so <code>SHIFT LEFT</code> by 2 will be <code>2²</code>. Therefore, <code>A &lt
 }
 </code></pre>
 
-<p>Make a function that allow <code>User</code> register service.</p>
+<p>Make a function that allows <code>User</code> register service.</p>
 
 <pre><code class="language-go">/*
     Register will add a key to the bitmark(Services)
@@ -226,7 +226,7 @@ OCR
 
 <p>Assume that both <code>[]string</code> and <code>bitmark</code> must store 3 elements <code>OCR</code>, <code>FM</code>, <code>LC</code>.</p>
 
-<p>For string array represented by <code>[]string{&quot;OCR&quot;, &quot;FM&quot;, &quot;LC&quot;}</code>. It&rsquo;s easy to see that we
+<p>For the string array represented by <code>[]string{&quot;OCR&quot;, &quot;FM&quot;, &quot;LC&quot;}</code>. It&rsquo;s easy to see that we
 needed 3 memory address to store all the elements of our string array (<code>O(n) memory space</code>).</p>
 
 <p><img src="../../../../../images/2021-05-22-bitmark/dsf.png" alt="String mem" /></p>
